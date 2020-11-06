@@ -27,7 +27,11 @@
                 </h3>
                 <ul>
                     <li><p class="author author-info"><a href="#" class="author">{{$item->snippet->channelTitle}}</a></p></li>
-                    <li class="right-list"><p class="views views-info">0 views</p></li>
+                    <li class="right-list">
+                        <p class="views views-info">
+                        <span data-views='{{$item->id->videoId}}'>0</span> views
+                        </p>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -626,15 +630,29 @@
 
             $(document).ready(function(){
                  //Get all video ids
-                //    $('.video-id-class').each(function(){
-                //        var video_id=$(this).attr('data-video-id');
-                //        $.post("{{ URL::route('getVideoDetails') }}"
-                //               ,{video_id:video_id}
-                //               ,function(data){
-                //                 console.log(data.html);
-                //                 var obj=$.
-                //               }); //end of function
-                //    });   //$('.video-id-class').each(function(){
+                 var video_id='';
+                   $('.video-id-class').each(function(index){
+                       if(index==0){
+                            video_id=$(this).attr('data-video-id');
+                       }else{
+                            video_id=video_id + "," + $(this).attr('data-video-id');
+                       }
+                   });   //$('.video-id-class').each(function(){
+                    $.post("{{ URL::route('getVideoDetails') }}"
+                              ,{video_id:video_id}
+                              ,function(data){
+                                  var json_data=data.api_response;
+                                  console.log(json_data);
+                                  var total_items=json_data['items']['length'];
+
+                                    for (var i=0;i<total_items;i++){
+                                      var duration=json_data['items'][i]['contentDetails']['duration'];
+                                      var id_video=json_data['items'][i]['id'];
+                                      var views=json_data['items'][i]['statistics']['viewCount'];
+                                          $("p[data-video-time='"+id_video+"']").text(duration);
+                                          $("span[data-views='"+id_video+"']").text(views);
+                                    }//end of for
+                              }); //end of function  
             }); //end of ready function
 
     </script>
