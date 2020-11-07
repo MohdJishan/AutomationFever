@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
 
 
-Route::get('/recent-videos', 'App\Http\Controllers\HomeController@RecentVideos')->name('recent-videos');
-Route::post('/getVideoDetails',array('uses'=>'App\Http\Controllers\HomeController@GetVideoDetails','as'=>'getVideoDetails'));
+Route::get('/', 'App\Http\Controllers\HomeController@RecentVideos')->name('home');
+Route::get('/single/{video_id}', 'App\Http\Controllers\SingleController@ShowSingleVideo')->name('single');

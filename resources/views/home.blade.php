@@ -8,12 +8,13 @@
             <h3>Recent Videos</h3>
         </div>
 
-@foreach ($responce->items as $key => $item)
-        <div class="col-md-4 resent-grid recommended-grid slider-top-grids video-id-class" data-video-id="{{$item->id->videoId}}">
+@foreach ($recent_videos as $item)
+        <div class="col-md-4 resent-grid recommended-grid slider-top-grids video-id-class" data-video-id="">
             <div class="resent-grid-img recommended-grid-img">
-            <a href="single.php"><img src="{{$item->snippet->thumbnails->medium->url}}" alt="" /></a>
+            <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="images/{{$item->thumbnail}}" alt="" />
+            </a>
                 <div class="time small-time slider-time">
-                <p data-video-time='{{$item->id->videoId}}'>00:00</p>
+                <p data-video-time=''>{{$item->duration}}</p>
                 </div>
                 <div class="clck small-clck">
                     <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
@@ -21,31 +22,32 @@
             </div>
             <div class="resent-grid-info recommended-grid-info">
                 <h3>
-                    <a href="single.php" class="title title-info">
-                        {{$item->snippet->title}}
+                    <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title title-info">
+                        {{$item->video_title}}
                     </a>
                 </h3>
                 <ul>
-                    <li><p class="author author-info"><a href="#" class="author">{{$item->snippet->channelTitle}}</a></p></li>
+                    <li><p class="author author-info"><a href="#" class="author">{{$item->channel_title}}</a></p></li>
                     <li class="right-list">
                         <p class="views views-info">
-                        <span data-views='{{$item->id->videoId}}'>0</span> views
+                        <span data-views=''>{{$item->view_count}}</span> views
                         </p>
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>    
 @endforeach
-
-        <div class="clearfix"> </div>
+     <div class="clearfix"> </div>
     </div>
+
+
     <div class="recommended">
         <div class="recommended-grids">
             <div class="heading-right float-right">
                 <a href="#">View All</a>
             </div>
             <div class="recommended-info">
-                <h3>Animated Cartoon</h3>
+            <h3>Excel VBA Tutorials in Hindi<span class="badge badge-pill badge-info">{{$count_excelVBATutorials}}</span></h3>
             </div>
             <script src="js/responsiveslides.min.js"></script>
             <script>
@@ -70,590 +72,228 @@
             </script>
             <div  id="top" class="callbacks_container">
                 <ul class="rslides" id="slider3">
-                    <li>
+                @for ($i = 0; $i < sizeof($excelVBATutorials); $i=$i+4)
+                   <li>
+                       
                         <div class="animated-grids">
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>7:34</p>
+                            @for ($indx = $i; $indx < $i+4; $indx++)    
+                                <div class="col-md-3 resent-grid recommended-grid slider-first">
+                                    <div class="resent-grid-img recommended-grid-img">
+                                        <a href="{{route('single',['video_id'=>$excelVBATutorials[$indx]->video_id])}}"><img src="images/{{$excelVBATutorials[$indx]->thumbnail}}" alt="" /></a>
+                                        <div class="time small-time slider-time">
+                                            <p>{{$excelVBATutorials[$indx]->duration}}</p>
+                                        </div>
+                                        <div class="clck small-clck">
+                                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                        </div>
                                     </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                    <div class="resent-grid-info recommended-grid-info">
+                                    <h5><a href="{{route('single',['video_id'=>$excelVBATutorials[$indx]->video_id])}}" class="title">{{$excelVBATutorials[$indx]->video_title}}</a></h5>
+                                        <div class="slid-bottom-grids">
+                                            <div class="slid-bottom-grid">
+                                                <p class="author author-info"><a href="#" class="author">{{$excelVBATutorials[$indx]->channel_title}}</a></p>
+                                            </div>
+                                            <div class="slid-bottom-grid slid-bottom-right">
+                                                <p class="views views-info">{{$excelVBATutorials[$indx]->view_count}} views</p>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c1.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>6:23</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus varius viverra nullam sit amet viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">14,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c2.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>2:45</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c3.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>4:34</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="animated-grids">
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c1.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>4:42</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Varius sit sed viverra viverra nullam nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c2.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>6:14</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c3.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>2:34</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">varius sit sed viverra viverra nullam Nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>5:12</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">1,14,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="animated-grids">
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c2.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>4:42</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Varius sit sed viverra viverra nullam nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c3.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>6:14</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>2:34</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">varius sit sed viverra viverra nullam Nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c3.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>5:12</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">1,14,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="animated-grids">
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c3.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>4:42</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Varius sit sed viverra viverra nullam nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>6:14</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c1.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>2:34</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">varius sit sed viverra viverra nullam Nullam interdum metus</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">2,114,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3 resent-grid recommended-grid slider-first">
-                                <div class="resent-grid-img recommended-grid-img">
-                                    <a href="single.php"><img src="images/c2.jpg" alt="" /></a>
-                                    <div class="time small-time slider-time">
-                                        <p>5:12</p>
-                                    </div>
-                                    <div class="clck small-clck">
-                                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                                    </div>
-                                </div>
-                                <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                                    <div class="slid-bottom-grids">
-                                        <div class="slid-bottom-grid">
-                                            <p class="author author-info"><a href="#" class="author">John Maniya</a></p>
-                                        </div>
-                                        <div class="slid-bottom-grid slid-bottom-right">
-                                            <p class="views views-info">1,14,200 views</p>
-                                        </div>
-                                        <div class="clearfix"> </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                    </li>
+                            @endfor   
+                        <div class="clearfix"> </div>
+                    </div>
+                </li>
+                @endfor
                 </ul>
             </div>
         </div>
     </div>
+
+  {{-- Vba Loops  --}}
     <div class="recommended">
         <div class="recommended-grids">
-        <div class="heading-right float-right">
-                <a href="#">View All</a>
-            </div>
+          @for ($i = 0; $i < sizeof($vbaLoops); $i=$i+4)
             <div class="recommended-info">
-                <h3>Recommended</h3>
+                        <h3>
+                        @if ($i==0)
+                            VBA - Loops in Hindi<span class="badge badge-pill badge-info">{{$count_vbaLoops}}</span>
+                        @endif
+                        </h3>
             </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r1.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>2:34</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Varius sit sed viverra viverra nullam nullam interdum metus</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
+                @php
+                if (($i+4)<sizeof($vbaLoops)) {
+                    $total_items=$i+4;
+                }else {
+                        $total_items=sizeof($vbaLoops)-$i;         
+                    }
+                @endphp
+
+                    @for ($indx = $i; $indx < $i+$total_items ; $indx++)
+                        <div class="col-md-3 resent-grid recommended-grid">
+                            <div class="resent-grid-img recommended-grid-img">
+                                <a href="{{route('single',['video_id'=>$vbaLoops[$indx]->video_id])}}"><img src="images/{{$vbaLoops[$indx]->thumbnail}}" alt="" /></a>
+                                <div class="time small-time">
+                                    <p>{{$vbaLoops[$indx]->duration}}</p>
+                                </div>
+                                <div class="clck small-clck">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="resent-grid-info recommended-grid-info video-info-grid">
+                                <h5><a href="{{route('single',['video_id'=>$vbaLoops[$indx]->video_id])}}" class="title">{{$vbaLoops[$indx]->video_title}}</a></h5>
+                                <ul>
+                                    <li><p class="author author-info"><a href="#" class="author">{{$vbaLoops[$indx]->channel_title}}</a></p></li>
+                                    <li class="right-list"><p class="views views-info">{{$vbaLoops[$indx]->view_count}} views</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endfor
+                    <div class="clearfix"> </div>
             </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r2.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>3:02</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r3.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>1:34</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r4.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>2:09</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Nullam interdum viverra nullam metus varius sit sed viverra</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-        <div class="recommended-grids">
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r4.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>6:34</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r5.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>7:34</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r6.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>6:09</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Varius sit sed viverra nullam viverra nullam interdum metus</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-3 resent-grid recommended-grid">
-                <div class="resent-grid-img recommended-grid-img">
-                    <a href="single.php"><img src="images/r1.jpg" alt="" /></a>
-                    <div class="time small-time">
-                        <p>9:04</p>
-                    </div>
-                    <div class="clck small-clck">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="resent-grid-info recommended-grid-info video-info-grid">
-                    <h5><a href="single.php" class="title">Nullam interdum metus viverra nullam varius sit sed viverra</a></h5>
-                    <ul>
-                        <li><p class="author author-info"><a href="#" class="author">John Maniya</a></p></li>
-                        <li class="right-list"><p class="views views-info">2,114,200 views</p></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+           @endfor    
     </div>
 
+{{-- VBA - Text To Columns in Hindi --}}
+    <div class="recommended">
+        <div class="recommended-grids">
+            <div class="recommended-info">
+                <h3>VBA - Text To Columns in Hindi<span class="badge badge-pill badge-info">{{$count_vbaTextToCols}}</span></h3>
+            </div>
+            @foreach ($vbaTextToCols as $item)
+                <div class="col-md-3 resent-grid recommended-grid">
+                    <div class="resent-grid-img recommended-grid-img">
+                        <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="images/{{$item->thumbnail}}" alt="" /></a>
+                        <div class="time small-time">
+                            <p>{{$item->duration}}</p>
+                        </div>
+                        <div class="clck small-clck">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="resent-grid-info recommended-grid-info video-info-grid">
+                        <h5><a href="single.php" class="title">{{$item->video_title}}</a></h5>
+                        <ul>
+                            <li><p class="author author-info"><a href="#" class="author">{{$item->channel_title}}</a></p></li>
+                            <li class="right-list"><p class="views views-info">{{$item->view_count}} views</p></li>
+                        </ul>
+                    </div>
+                </div>
+            @endforeach
+            <div class="clearfix"> </div>
+        </div>
+    </div>    
+
+    
+ 
+
+     {{-- Hyperlink  --}}
+    <div class="recommended">
+        <div class="recommended-grids">
+          @for ($i = 0; $i < sizeof($vbaHyperlinks); $i=$i+4)
+            <div class="recommended-info">
+                        <h3>
+                        @if ($i==0)
+                            VBA - Hyperlinks in Hindi<span class="badge badge-pill badge-info">{{$count_vbaHyperlinks}}</span>
+                        @endif
+                        </h3>
+            </div>
+                @php
+                if (($i+4)<sizeof($vbaHyperlinks)) {
+                    $total_items=$i+4;
+                }else {
+                        $total_items=sizeof($vbaHyperlinks)-$i;         
+                    }
+                @endphp
+
+                    @for ($indx = $i; $indx < $i+$total_items ; $indx++)
+                        <div class="col-md-3 resent-grid recommended-grid">
+                            <div class="resent-grid-img recommended-grid-img">
+                                <a href="{{route('single',['video_id'=>$vbaHyperlinks[$indx]->video_id])}}"><img src="images/{{$vbaHyperlinks[$indx]->thumbnail}}" alt="" /></a>
+                                <div class="time small-time">
+                                    <p>{{$vbaHyperlinks[$indx]->duration}}</p>
+                                </div>
+                                <div class="clck small-clck">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                                </div>
+                            </div>
+                            <div class="resent-grid-info recommended-grid-info video-info-grid">
+                                <h5><a href="{{route('single',['video_id'=>$vbaHyperlinks[$indx]->video_id])}}" class="title">{{$vbaHyperlinks[$indx]->video_title}}</a></h5>
+                                <ul>
+                                    <li><p class="author author-info"><a href="#" class="author">{{$vbaHyperlinks[$indx]->channel_title}}</a></p></li>
+                                    <li class="right-list"><p class="views views-info">{{$vbaHyperlinks[$indx]->view_count}} views</p></li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endfor
+                    <div class="clearfix"> </div>
+            </div>
+           @endfor    
+        </div>
+    </div>       
+</div>
+
+
+    {{-- VBA - Sorting in Hindi --}}
+    <div class="recommended">
+        <div class="recommended-grids">
+            <div class="recommended-info">
+                <h3>VBA - Sorting in Hindi<span class="badge badge-pill badge-info">{{$count_vbaSorting}}</span></h3>
+            </div>
+            @foreach ($vbaSorting as $item)
+                <div class="col-md-3 resent-grid recommended-grid">
+                    <div class="resent-grid-img recommended-grid-img">
+                        <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="images/{{$item->thumbnail}}" alt="" /></a>
+                        <div class="time small-time">
+                            <p>{{$item->duration}}</p>
+                        </div>
+                        <div class="clck small-clck">
+                            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        </div>
+                    </div>
+                    <div class="resent-grid-info recommended-grid-info video-info-grid">
+                        <h5><a href="{{route('single',['video_id'=>$item->video_id])}}" class="title">{{$item->video_title}}</a></h5>
+                        <ul>
+                            <li><p class="author author-info"><a href="#" class="author">{{$item->channel_title}}</a></p></li>
+                            <li class="right-list"><p class="views views-info">{{$item->view_count}} views</p></li>
+                        </ul>
+                    </div>
+                </div>
+            @endforeach
+            <div class="clearfix"> </div>
+        </div>
+    </div>    
+
+
+{{-- Excel VBA Projects in Hindi --}}
+<div class="recommended">
+    <div class="recommended-grids">
+        <div class="recommended-info">
+            <h3>Excel VBA Projects in Hindi<span class="badge badge-pill badge-info">{{$count_vbaProjects}}</span></h3>
+        </div>
+        @foreach ($vbaProjects as $item)
+            <div class="col-md-3 resent-grid recommended-grid">
+                <div class="resent-grid-img recommended-grid-img">
+                    <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="images/{{$item->thumbnail}}" alt="" /></a>
+                    <div class="time small-time">
+                        <p>{{$item->duration}}</p>
+                    </div>
+                    <div class="clck small-clck">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="resent-grid-info recommended-grid-info video-info-grid">
+                    <h5><a href="{{route('single',['video_id'=>$item->video_id])}}" class="title">{{$item->video_title}}</a></h5>
+                    <ul>
+                        <li><p class="author author-info"><a href="#" class="author">{{$item->channel_title}}</a></p></li>
+                        <li class="right-list"><p class="views views-info">{{$item->view_count}} views</p></li>
+                    </ul>
+                </div>
+            </div>
+        @endforeach
+        <div class="clearfix"> </div>
+    </div>
+</div>    
     <script>
-          //Ajax token setup for the post requests. 
-          $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-            });
-
-            $(document).ready(function(){
-                 //Get all video ids
-                 var video_id='';
-                   $('.video-id-class').each(function(index){
-                       if(index==0){
-                            video_id=$(this).attr('data-video-id');
-                       }else{
-                            video_id=video_id + "," + $(this).attr('data-video-id');
-                       }
-                   });   //$('.video-id-class').each(function(){
-                    $.post("{{ URL::route('getVideoDetails') }}"
-                              ,{video_id:video_id}
-                              ,function(data){
-                                  var json_data=data.api_response;
-                                  console.log(json_data);
-                                  var total_items=json_data['items']['length'];
-
-                                    for (var i=0;i<total_items;i++){
-                                      var duration=json_data['items'][i]['contentDetails']['duration'];
-                                      var id_video=json_data['items'][i]['id'];
-                                      var views=json_data['items'][i]['statistics']['viewCount'];
-                                          $("p[data-video-time='"+id_video+"']").text(duration);
-                                          $("span[data-views='"+id_video+"']").text(views);
-                                    }//end of for
-                              }); //end of function  
-            }); //end of ready function
-
     </script>
 @endsection
