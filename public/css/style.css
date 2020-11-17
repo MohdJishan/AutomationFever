@@ -450,7 +450,7 @@ a.btn.btn-primary.btn-lg.see-button.hvr-shutter-out-horizontal {
     background: #3F3C35;
 }
 .animated-grids {
-  margin-bottom: 7em;
+  margin-bottom: 3em;
 }
 .header-right{
 	float:left;
@@ -2780,7 +2780,10 @@ a:hover{
 li.active{
 	color: #F46001!important;
 }
-
+.badge-info {
+    color: #fff;
+    background-color: #F46001 !important;
+}
 
 .video-container { position: relative; padding-bottom: 56.25%; padding-top: 30px; height: 0; overflow: hidden; }
 

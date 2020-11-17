@@ -33,6 +33,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 <!-- //fonts -->
 
+ {{-- Google Tracker --}}
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170183563-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-170183563-1');
+</script>
+{{-- end of google tracker --}}
 </head>
   <body>
 <script>
@@ -62,40 +73,26 @@ if(typeof _bsa !== 'undefined' && _bsa) {
 <!--<script>(function(v,d,o,ai){ai=d.createElement("script");ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, "//a.vdo.ai/core/w3layouts_V2/vdo.ai.js?vdo=34");</script>-->
 <div id="codefund"><!-- fallback content --></div>
 <script src="../../../../../../../codefund.io/properties/441/funder.js" async="async"></script>
-	
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src='https://www.googletagmanager.com/gtag/js?id=UA-149859901-1'></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-149859901-1');
-</script>
-
-<script>
-     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-     ga('create', 'UA-149859901-1', 'demo.w3layouts.com');
-     ga('require', 'eventTracker');
-     ga('require', 'outboundLinkTracker');
-     ga('require', 'urlChangeTracker');
-     ga('send', 'pageview');
-   </script>
+  
+<script
+  src="https://code.jquery.com/jquery-3.5.1.min.js"
+  integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+  crossorigin="anonymous"></script>
 
 <meta name="robots" content="noindex">
 <body>
-@include('master-layout.top-navbar')
+    @include('master-layout.top-navbar')
 
-<div class="col-sm-12 col-md-12 main">
-            <div class="main-grids">
-                @yield('content')
-            </div>
-</div>    
+    <div class="col-sm-12 col-md-12 main">
+                <div class="main-grids">
+                    @yield('content')
+                </div>
+    </div>    
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        {{-- <script src="js/bootstrap.min.js"></script> --}}
+        <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
   </body>
 </html>

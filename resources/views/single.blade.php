@@ -21,7 +21,7 @@
             </div>
             <div class="clearfix"> </div>
             <div class="published">
-                <script src="jquery.min.html"></script>
+                <script src="{{ asset('jquery.min.html')}}"></script>
                     <script>
                         $(document).ready(function () {
                             size_li = $("#myList li").size();
@@ -38,29 +38,16 @@
                         });
                     </script>
                     <div class="load_more">	
-                        <ul id="myList">
+                        <ul id="myLista">
                             <li>
                                 <h4>Published on {{\Carbon\Carbon::parse($video_details->published_datetime)->format('d F Y')}}</h4>
                                     <p>{{$video_details->description}}</p>
-                            </li>
-                            <li>
-                                <p>{{$video_details->description}}</p>
-                                <p>{{$video_details->description}}</p>
-                                <div class="load-grids">
-                                    <div class="load-grid">
-                                        <p>Category</p>
-                                    </div>
-                                    <div class="load-grid">
-                                        <a href="movies.html">Entertainment</a>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
                             </li>
                         </ul>
                     </div>
             </div>
             <div class="all-comments">
-                <div class="all-comments-info">
+                {{-- <div class="all-comments-info">
                     <a href="#">All Comments ({{$video_details->comment_count}})</a>
                     <div class="box">
                         <form>
@@ -88,7 +75,7 @@
                             <li><a href="#" class="top my-comment">My Comments</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
                 {{-- <div class="media-grids">
                     <div class="media">
                         <h5>Tom Brown</h5>
@@ -196,6 +183,6 @@
             </div>
         </div>
         <div class="clearfix"> </div>
-    </div>
+    </div> {{--  <div class="show-top-grids">--}}
 </div>    
 @endsection
