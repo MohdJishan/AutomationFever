@@ -1,6 +1,18 @@
 @extends('master-layout.master')
+@section('application-title')
+  <title>{{$video_details->video_title}}</title>    
+@endsection
 
-@section('application-title','Video')
+
+@section('fevicon')
+    <link rel="icon" href="{{ asset('images/AutomationFever_icon.png')}}" type="image/gif" sizes="16x16">
+@endsection
+
+
+@section('meta_data')
+        <meta name="keywords" content="{{$video_details->meta_data}}" />
+        <meta name="description" content="{{$video_details->meta_description}}" />
+@endsection
 
 @section('content')
 <div class="col-sm-12 col-md-12 main">
@@ -8,7 +20,7 @@
         <div class="col-sm-8 single-left">
             <div class="song">
                 <div class="video-grid">
-                    <iframe src="https://www.youtube.com/embed/{{$video_id}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="song-info">
                     <h3>{{$video_details->video_title}} 

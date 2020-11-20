@@ -18,6 +18,8 @@ class SingleController extends Controller
                                             'description',
                                             'comment_count',
                                             'file1_url',
+                                            'meta_data',
+                                            'meta_description',
                                         )
                                         ->where('video_id',$video_id)
                                         ->first();

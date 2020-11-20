@@ -1,6 +1,37 @@
 @extends('master-layout.master')
 
-@section('application-title','Home')
+
+@section('application-title')
+  <title>Automation Fever | Home</title>    
+@endsection
+@section('fevicon')
+    <link rel="icon" href="{{ asset('images/AutomationFever_icon.png')}}" type="image/gif" sizes="16x16">
+@endsection
+
+@section('meta_data')
+        <meta name="keywords" content="'Excel vba toturials, vba tutorials, Automation Fever, excel vba tutorial,excel vba tutorial for beginners,excel vba tutorial for beginners in hindi,excel vba tutorial in hindi,excel vba tutorial advanced,excel and vba tutorial,
+        excel vba tutorial for beginners in urdu,
+        excel vba macro complete tutorial,
+        excel vba code tutorial hindi,
+        excel vba code tutorial,
+        excel vba expert tutorial,
+        excel vba beginner tutorial in hindi,
+        excel vba loops tutorial,
+        excel vba language tutorial,
+        excel vba beginner tutorial learnit,
+        macro vba excel tutorial,
+        tutorial on vba excel,
+        excel vba quick tutorial,
+        excel to vba programming,
+        excel vba web scraping tutorial,
+        excel with vba tutorial,
+        excel 2010 vba tutorial,
+        vba excel 2019 tutorial,
+        excel 2013 vba tutorial,
+        excel 365 vba tutorial,Automation fever,automationfever.com" />
+<meta name="description" content="You can watch excel vba videos here. We are trying to make you understand every topic of vba." />
+@endsection
+
 
 @section('content')
 <div class="top-grids">

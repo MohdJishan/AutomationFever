@@ -43,9 +43,9 @@ class RefreshVideoDetails extends Command
                         ->count();
         
         $cnt=ceil($total_videos/50);
-
+  
                     
-        for($indx=1; $indx<=$cnt; $indx++)
+        for($indx=0; $indx<$cnt; $indx++)
              {                            
                 $video_ids= DB::table('videos_list')
                                     ->select('video_id')
@@ -72,14 +72,15 @@ class RefreshVideoDetails extends Command
                         $likeCount=$val['statistics']['likeCount'];
                         $dislikeCount=$val['statistics']['dislikeCount'];
                         $commentCount=$val['statistics']['commentCount'];
-                        DB::table('videos_list')
-                            ->where('video_id',$video_id)
-                            ->update([
-                                        'view_count' => $viewCount,
-                                        'like_count' => $likeCount,
-                                        'dislike_count' => $dislikeCount,
-                                        'comment_count'=> $commentCount
-                                    ]);
+                        $record_affected=DB::table('videos_list')
+                                        ->where('video_id',$video_id)
+                                        ->update([
+                                                    'view_count' => $viewCount,
+                                                    'like_count' => $likeCount,
+                                                    'dislike_count' => $dislikeCount,
+                                                    'comment_count'=> $commentCount
+                                                ]);
+                                                
                 } //end of foreach loop
             }// end of for loop    
         return 0;

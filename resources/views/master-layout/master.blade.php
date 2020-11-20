@@ -3,16 +3,18 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 
-    <title>
-        @yield('application-title')
-    </title>
-
-<link rel="icon" href="{{ asset('images/AutomationFever_icon.png')}}" type="image/gif" sizes="16x16">
+    
+@yield('application-title')    
+@yield('fevicon')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="Excel Vba, Excel vba tutorials, Excel vba tutorials in hindi" />
+@yield('meta_data')
+
+<meta name="author" content="Shaan Ansari">
+<meta name="robots" content="noindex">
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 
 <!-- bootstrap -->
@@ -79,7 +81,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
 
-<meta name="robots" content="noindex">
+
 <body>
     @include('master-layout.top-navbar')
 
