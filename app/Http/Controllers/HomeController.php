@@ -60,7 +60,7 @@ class HomeController extends Controller
                                               )
                                               ->where('parent_playlist',$playlist_name)
                                               ->limit(4)
-                                              ->orderBy('published_datetime')
+                                              ->orderBy('published_datetime','desc')
                                               ->get();
 
         $count_excelVBATutorials=Videos_lists::where('parent_playlist',$playlist_name)
@@ -89,7 +89,7 @@ class HomeController extends Controller
                                         'duration'
                                       )
                                       ->where('playlist',$playlist_name)
-                                      ->orderBy('published_datetime')
+                                      ->orderBy('published_datetime','desc')
                                       ->limit(4)
                                       ->get();
 
@@ -117,7 +117,7 @@ class HomeController extends Controller
                                               'duration'
                                             )
                                             ->where('playlist','VBA - Text To Columns in Hindi')
-                                            ->orderBy('published_datetime')
+                                            ->orderBy('published_datetime','desc')
                                             ->limit(4)
                                             ->get();
 
@@ -144,7 +144,7 @@ class HomeController extends Controller
                                         'duration'
                                       )
                                       ->where('playlist',$playlist_name)
-                                      ->orderBy('published_datetime')
+                                      ->orderBy('published_datetime','desc')
                                       ->limit(4)
                                       ->get();
 
@@ -174,7 +174,7 @@ class HomeController extends Controller
                                               'duration'
                                             )
                                             ->where('playlist',$playlist_name)
-                                            ->orderBy('published_datetime')
+                                            ->orderBy('published_datetime','desc')
                                             ->get();
 
         $count_vbaSorting=Videos_lists::where('playlist',$playlist_name)
@@ -202,7 +202,7 @@ class HomeController extends Controller
                                       'duration'
                                     )
                                     ->where('playlist',$playlist_name)
-                                    ->orderBy('published_datetime')
+                                    ->orderBy('published_datetime','desc')
                                     ->get();                            
     
 

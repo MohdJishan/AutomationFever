@@ -30,7 +30,7 @@
           </div>
         </li>-->
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color:#ccc6c6">Contact</a>
+          <a class="nav-link" href="contact-us" style="color:#ccc6c6">Contact</a>
         </li>
       </ul>
       <div class="top-search">
@@ -50,9 +50,9 @@
       <div class="signin">
         {{-- <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Sign Up</a> --}}
         <!-- pop-up-box -->
-                <script type="text/javascript" src="js/modernizr.custom.min.js"></script>    
-                <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-                <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+                <script type="{{ asset('text/javascript') }}" src="js/modernizr.custom.min.js"></script>    
+                <link href="{{ asset('css/popuo-box.css') }}" rel="stylesheet" type="text/css" media="all" />
+                <script src="{{ asset('js/jquery.magnific-popup.js') }}" type="text/javascript"></script>
                 <!--//pop-up-box -->
                 <div id="small-dialog2" class="mfp-hide">
                   <h3>Create Account</h3> 

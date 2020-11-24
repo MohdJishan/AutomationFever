@@ -1,8 +1,7 @@
 @extends('master-layout.master')
 
-
 @section('application-title')
-  <title>Automation Fever | Home</title>    
+  <title>Contact Us</title>    
 @endsection
 
 @section('fevicon')
@@ -34,13 +33,13 @@
 <meta name="robots" content="noodp"/>
 <meta property="og:locale" content="en_US" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Excel Vba Tutorials -Automation Fever" />
+<meta property="og:title" content="Contact us -Automation Fever" />
 <meta property="og:description" content="You can watch excel vba videos here. We are trying to make you understand every topic of vba." />
 <meta property="og:url" content="http://www.automationfever.com/" />
 <meta property="og:site_name" content="AutomationFever" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="You can watch excel vba videos here. We are trying to make you understand every topic of vba." />
-<meta name="twitter:title" content="Excel Vba Tutorials -Automation Fever" />
+<meta name="twitter:title" content="Contact us -Automation Fever" />
 <meta name="twitter:site" content="@AutomationFever" />
 <meta name="twitter:creator" content="@AutomationFever" />
 @endsection
@@ -79,133 +78,42 @@
 {{-- end of google tracker --}}
 @endsection
 
-
 @section('content')
-<div class="top-grids">
+<div class="show-top-grids">
+    <div class="main-grids about-main-grids">
         <div class="recommended-info">
-            <h3>Recent Videos</h3>
-        </div>
-        <span  id="recent_videos">
-            <div id="recent_waiting_image">
+            <div class="about-grids">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Full Name</label>
+                  <input type="text" class="form-control form-control-sm" id="inputEmail4" placeholder="Full Name">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Email</label>
+                  <input type="email" class="form-control form-control-sm" id="inputPassword4" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-9">
+                  <label for="inputCity">Subject</label>
+                  <input type="text" class="form-control" id="" placeholder="Subject">
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputZip">Mobile Number</label>
+                  <input type="text" class="form-control" id="inputZip">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputCity">Comment</label>
+                  <textarea class="form-control" id="" placeholder="Comment" rows="3"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Send</button>
+            </form>         
             </div>
-        </span>
-
-     <div class="clearfix"> </div>
+        </div>
+    </div>
 </div>
-
-{{-- Excel Vba tutorials in Hindi --}}
-    <div class="recommended">
-        <div class="recommended-grids">
-            <span  id="excel_vba_toturials">
-            </span>
-        </div>
-    </div>
-
-    <script src="js/responsiveslides.min.js"></script>
-    <script>
-        // You can also use "$(window).load(function() {"
-        $(function () {
-        // Slideshow 4
-        $("#slider3").responsiveSlides({
-            auto: true,
-            pager: false,
-            nav: true,
-            speed: 500,
-            namespace: "callbacks",
-            before: function () {
-            $('.events').append("<li>before event fired.</li>");
-            },
-            after: function () {
-            $('.events').append("<li>after event fired.</li>");
-            }
-        });
-    
-        });
-    </script>
-
-  {{-- Vba Loops  --}}
-    <div class="recommended">
-        <div class="recommended-grids" id="vba_loops">
-        </div>
-    </div>
-
-{{-- VBA - Text To Columns in Hindi --}}
-    <div class="recommended">
-        <div class="recommended-grids" id="text_to_columns">
-        </div>
-    </div>    
-
-  
- 
-     {{-- Hyperlink  --}}
-    <div class="recommended">
-        <div class="recommended-grids" id="vba_hyperlinks">  
-        </div>
-    </div>       
-
-
-    {{-- VBA - Sorting in Hindi --}}
-    <div class="recommended">
-        <div class="recommended-grids" id="vba_sorting">
-        </div>
-    </div>    
-
-
-    {{-- Excel VBA Projects in Hindi --}}
-    <div class="recommended">
-        <div class="recommended-grids" id="vba_projects">
-
-        </div>
-    </div>    
-
-    <script>
-        $(document).ready(function(){
-            //Ajax token setup for the post requests. 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-            }); //$.ajaxSetup({
-
-            //Recent Videos
-            $.post("{{URL::route('getRecentVideos') }}",{},function(data){
-                $('#recent_videos').html(data.html);     
-            });    
-
-            // Excel Vba toturials
-             $.post("{{URL::route('getExcelVbaToturials') }}",function(data){
-                $('#excel_vba_toturials').html(data.html);     
-             });
-
-
-            // Vba loops
-            $.post("{{URL::route('getVbaLoops') }}",function(data){
-                $('#vba_loops').html(data.html);     
-             });
-
-
-            // Vba Text to Columns
-            $.post("{{URL::route('getTextToColumns') }}",function(data){
-                $('#text_to_columns').html(data.html);     
-             }); 
-
-            // Vba Hyperlinks
-            $.post("{{URL::route('getHyperlinks') }}",function(data){
-                $('#vba_hyperlinks').html(data.html);     
-             });
-
-
-            // Vba Sorting
-            $.post("{{URL::route('getSorting') }}",function(data){
-                $('#vba_sorting').html(data.html);     
-             });
-
-             
-            // Vba Projects
-            $.post("{{URL::route('getVbaProjects') }}",function(data){
-                $('#vba_projects').html(data.html);     
-             });
-             
-        }); //end of ready function
-    </script>
 @endsection

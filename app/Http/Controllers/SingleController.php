@@ -39,6 +39,7 @@ class SingleController extends Controller
                                         )
                                         ->where('parent_playlist','Excel VBA Tutorials in Hindi')
                                         ->where('video_id','!=',$video_id)
+                                        ->orderBy('published_datetime')
                                         ->get();                                
         }else{
             $up_next_videos=Videos_lists::select(
@@ -50,6 +51,7 @@ class SingleController extends Controller
                                         )
                                         ->where('playlist',$playlist_name->playlist)
                                         ->where('video_id','!=',$video_id)
+                                        ->orderBy('published_datetime')
                                         ->get();               
         }
             
