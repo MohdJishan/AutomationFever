@@ -29,4 +29,11 @@ Route::get('/view-all-videos/{playlist_name}', 'App\Http\Controllers\HomeControl
 Route::get('/add_description', 'App\Http\Controllers\AddDescription@LoadVideosDetails')->name('add_description');
 Route::post('/insert_video_description','App\Http\Controllers\AddDescription@InsertVideoDescription')->name('insert_video_description');
 
+Route::post('/get-video-text-description',array('uses'=>'App\Http\Controllers\SingleController@GetVideoTextDescription','as'=>'get-video-text-description'));
+
 Route::get('/contact-us','App\Http\Controllers\ContactUsController@GetContactUsPage')->name('contact-us');
+Route::post('/send-contact-us','App\Http\Controllers\ContactUsController@ContactUsPost')->name('send-contact-us');
+
+Route::get('/about-us','App\Http\Controllers\AboutUsController@GetAboutUs')->name('about-us');
+
+

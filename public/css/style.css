@@ -837,7 +837,7 @@ select.form-control.bfh-countries:hover {
 }
 .video-grid iframe {
     border: none;
-    height: 376px;
+    height: 459px;
 }
 .share h5{
     margin: 0;
@@ -1061,6 +1061,7 @@ select.form-control.bfh-countries:hover {
     padding-left: 0;
     background: #f7f7f7;
     padding: 1em;
+	font-size: medium;
 }
 .published h4{
     color: #717171;
@@ -2766,6 +2767,10 @@ background: url(../images/social.png) no-repeat 0px 0px;
 	
 }
 
+.h3, h3 {
+    color: #F46001 !important;
+	text-decoration: none !important;
+}
 
 
 .float-right

@@ -1,12 +1,13 @@
 @extends('master-layout.master')
-
 @section('application-title')
   <title>{{$video_details->video_title}}</title>    
 @endsection
 
+
 @section('fevicon')
     <link rel="icon" href="{{ asset('images/AutomationFever_icon.png')}}" type="image/gif" sizes="16x16">
 @endsection
+
 
 @section('meta_data')
 <meta name="keywords" content="{{$video_details->meta_data}}" />
@@ -67,12 +68,12 @@
         <div class="col-sm-8 single-left">
             <div class="song">
                 <div class="video-grid">
-                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div class="song-info">
                     <h3>{{$video_details->video_title}} 
                         @if ($video_details->file1_url!=null AND $video_details->file1_url!=' ' )
-                    <a href="{{ asset('vba_codes/'. $video_details->file1_url)}}"><img src="{{asset('images/downloa_code.jpg')}}" width="75" height="35" alt="Download code files" class="float-right" /></a>    
+                    <a href="{{ asset('vba_codes/'. $video_details->file1_url)}}"><img src="{{asset('images/downloa_code.jpg')}}" width="60" height="35" alt="Download code files" class="float-right" /></a>    
                         @endif
                     </h3>	
                 </div>
@@ -97,13 +98,17 @@
                     </script>
                     <div class="load_more">	
                         <ul id="myLista">
-                            <li>
+                            
                                 <h4>Published on {{\Carbon\Carbon::parse($video_details->published_datetime)->format('d F Y')}}</h4>
-                                    <p id="description_html">
-                                        {{-- {{$video_details->description}} --}}
-
+                                    <p>
+                                        {{$video_details->description}}
                                     </p>
-                            </li>
+                        </ul>
+                    </div>
+					</div>
+					<div class="published">
+					<div class="load_more">	
+                        <ul id="text-description" data-description="text-description" data-video_id="{{$video_id}}">
                         </ul>
                     </div>
             </div>
@@ -247,43 +252,25 @@
     </div> {{--  <div class="show-top-grids">--}}
 </div>
 
-<script type='text/javascript' src='{{ asset("js/shCore.js")}}' id='syntaxhighlighter-core-js'></script>
-<script type='text/javascript' src='{{asset("js/shBrushSql.js")}}' id='syntaxhighlighter-brush-sql-js'></script>
-<script type='text/javascript'>
-	(function(){
-		var corecss = document.createElement('link');
-		var themecss = document.createElement('link');
-		var corecssurl = "{{asset('css/shCore.css')}}";
-		if ( corecss.setAttribute ) {
-				corecss.setAttribute( "rel", "stylesheet" );
-				corecss.setAttribute( "type", "text/css" );
-				corecss.setAttribute( "href", corecssurl );
-		} else {
-				corecss.rel = "stylesheet";
-				corecss.href = corecssurl;
-		}
-		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
-		var themecssurl = "{{asset('css/shThemeDefault.css')}}";
-		if ( themecss.setAttribute ) {
-				themecss.setAttribute( "rel", "stylesheet" );
-				themecss.setAttribute( "type", "text/css" );
-				themecss.setAttribute( "href", themecssurl );
-		} else {
-				themecss.rel = "stylesheet";
-				themecss.href = themecssurl;
-		}
-		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
-		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
-	})();
-	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
-	SyntaxHighlighter.config.strings.help = '?';
-	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
-	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
-	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
-	SyntaxHighlighter.defaults['gutter'] = false;
-	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
-	SyntaxHighlighter.defaults['toolbar'] = false;
-	SyntaxHighlighter.all();
-</script>
+
+
+  <script>
+        $(document).ready(function(){
+            //Ajax token setup for the post requests. 
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+            }); //$.ajaxSetup({
+
+
+
+            //Load Text description
+            var video_id="{{$video_id}}";
+            $.post("{{URL::route('get-video-text-description') }}",{video_id:video_id},function(data){
+                $('#text-description').html(data.html);     
+            });    
+        });
+  </script>
 
 @endsection

@@ -80,40 +80,93 @@
 
 @section('content')
 <div class="show-top-grids">
+  <div class="show-top-grids">
     <div class="main-grids about-main-grids">
-        <div class="recommended-info">
-            <div class="about-grids">
-            <form>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Full Name</label>
-                  <input type="text" class="form-control form-control-sm" id="inputEmail4" placeholder="Full Name">
+      <div class="recommended-info">
+        <div class="about-grids">
+          <div class="about-bottom-grids">
+            <div class="col-sm-6 about-left">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user glyphicon-facetime-video" aria-hidden="true"></span>
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Email</label>
-                  <input type="email" class="form-control form-control-sm" id="inputPassword4" placeholder="Email">
+                <div class="col-md-10 about-left-info">
+                  <a href="#">When We Started</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
                 </div>
+                <div class="clearfix"> </div>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-9">
-                  <label for="inputCity">Subject</label>
-                  <input type="text" class="form-control" id="" placeholder="Subject">
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputZip">Mobile Number</label>
-                  <input type="text" class="form-control" id="inputZip">
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputCity">Comment</label>
-                  <textarea class="form-control" id="" placeholder="Comment" rows="3"></textarea>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">Send</button>
-            </form>         
             </div>
+            <div class="col-sm-6 about-right">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-10 about-left-info">
+                  <a href="#">Community Guidelines</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+          <div class="about-bottom-grids">
+            <div class="col-sm-6 about-left">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user glyphicon-book" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-10 about-left-info">
+                  <a href="#">About Our Site</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+            <div class="col-sm-6 about-right">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user glyphicon-headphones" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-10 about-left-info">
+                  <a href="#">New Update</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+          <div class="about-bottom-grids">
+            <div class="col-sm-6 about-left">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user glyphicon-folder-open" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-10 about-left-info">
+                  <a href="#">Careers</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+            <div class="col-sm-6 about-right">
+              <div class="about-left-grids">
+                <div class="col-md-2 about-left-img">
+                  <span class="glyphicon glyphicon-user glyphicon-phone" aria-hidden="true"></span>
+                </div>
+                <div class="col-md-10 about-left-info">
+                  <a href="#">Contact Us</a>
+                  <p>Suspendisse cursus tempus ullamcorper Praesent molestie urna a metus auctor vulputate molestie urna a metus auctor molestie urna a metus auctor.</p>
+                </div>
+                <div class="clearfix"> </div>
+              </div>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 @endsection

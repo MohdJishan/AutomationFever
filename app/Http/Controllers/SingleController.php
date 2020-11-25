@@ -62,5 +62,22 @@ class SingleController extends Controller
                                 'up_next_videos' => $up_next_videos,
                             ]);
 
-    }    
+    }
+    
+    
+    public function GetVideoTextDescription(Request $request){
+        $video_id=$request->video_id;
+        $text_description=Videos_lists::select('text_description')
+                                        ->where('video_id',$video_id)
+                                        ->first();
+
+
+         
+            $returnHTML=view('ajax_get_text_description',[
+                'text_description' => $text_description,
+                'video_id' => $video_id,
+            ])->render();  
+
+        return response()->json(array('success'=>true,'html'=>$returnHTML));                                  
+    }
 }

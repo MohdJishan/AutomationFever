@@ -10,7 +10,7 @@
         <a class="nav-link" href="{{route('home')}}" style="color:#ffff;"> Home </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color:#ccc6c6"> About </a>
+          <a class="nav-link" href="{{route('about-us')}}" style="color:#ccc6c6"> About </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" style="color:#ccc6c6"> VBA </a>
@@ -30,7 +30,7 @@
           </div>
         </li>-->
         <li class="nav-item">
-          <a class="nav-link" href="contact-us" style="color:#ccc6c6">Contact</a>
+          <a class="nav-link" href="{{route('contact-us')}}" style="color:#ccc6c6">Contact</a>
         </li>
       </ul>
       <div class="top-search">

@@ -83,38 +83,113 @@
     <div class="main-grids about-main-grids">
         <div class="recommended-info">
             <div class="about-grids">
-            <form>
+            <form id="contact-us-form" name="contact-us-form" action="send-contact-us" method="POST" enctype="multipart/form-data">
+              @csrf
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Full Name</label>
-                  <input type="text" class="form-control form-control-sm" id="inputEmail4" placeholder="Full Name">
+                  <input type="text" class="form-control form-control-sm" id="full_name" name="full_name" placeholder="Full Name">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Email</label>
-                  <input type="email" class="form-control form-control-sm" id="inputPassword4" placeholder="Email">
+                  <input type="email" class="form-control form-control-sm" id="mail_address" name="mail_address" placeholder="Email">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-9">
                   <label for="inputCity">Subject</label>
-                  <input type="text" class="form-control" id="" placeholder="Subject">
+                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
                 </div>
                 <div class="form-group col-md-3">
                   <label for="inputZip">Mobile Number</label>
-                  <input type="text" class="form-control" id="inputZip">
+                  <input type="text" class="form-control" id="mobile_number" name="mobile_number">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label for="inputCity">Comment</label>
-                  <textarea class="form-control" id="" placeholder="Comment" rows="3"></textarea>
+                  <textarea class="form-control" id="user_comment" name="user_comment" placeholder="Comment" rows="3"></textarea>
                 </div>
               </div>
-              <button type="submit" class="btn btn-primary">Send</button>
+              <input type="submit" class="btn btn-primary" value="Send" />
             </form>
-                    
             </div>
         </div>
     </div>
 </div>
+
+    <!-- jquery-validation -->
+    <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
+
+
+    <script>
+          {{-- Form Validation --}}
+          $(document).ready(function(){        
+                $('#contact-us-form').validate({
+                  rules:{
+                    full_name:{
+                      required:true,
+                      normalizer: function(full_name) {
+                             return $.trim(full_name);
+                        },
+                    },
+                    mail_address:{
+                      required:true,
+                      normalizer: function(mail_address) {
+                             return $.trim(mail_address);
+                        },
+                      email:true,  
+                    },
+                    subject:{
+                      required:true,
+                      normalizer: function(subject) {
+                             return $.trim(subject);
+                        },
+                    },
+                    mobile_number:{
+                        digits: true,
+                        minlength:10,
+                        maxlength:10,
+
+                    },
+                    user_comment:{
+                      required:true,
+                      normalizer: function(user_comment) {
+                             return $.trim(user_comment);
+                        },
+                    },
+                  },
+                  messages:{
+                        full_name:{
+                          required:'Name is required',
+                        },
+                        mail_address:{
+                          required:'Email is required',
+                          email: "Invalid mail address"
+                        },
+                        subject:{
+                          required:'Subject is required'
+                        },
+                        user_comment:{
+                          required:'Comment is required'
+                        },
+                  },
+                    submitHandler: function (form) {
+                      form.submit();
+                    },
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                      error.addClass('invalid-feedback');
+                      element.closest('.form-group').append(error);
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                      $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                      $(element).removeClass('is-invalid');
+                    }
+                }); //end of validation
+        }); //end of ready function    
+      </script>   
 @endsection

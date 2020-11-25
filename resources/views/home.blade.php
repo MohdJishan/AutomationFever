@@ -83,6 +83,12 @@
 @section('content')
 <div class="top-grids">
         <div class="recommended-info">
+            @if (Session::get('post-contact-us'))
+            <div class="text-success font-weight-bold" id="contact-us-message" style="font-size: 20px">
+                {{Session::get('post-contact-us')}}
+              </div>
+            @endif
+            
             <h3>Recent Videos</h3>
         </div>
         <span  id="recent_videos">
@@ -205,6 +211,11 @@
             $.post("{{URL::route('getVbaProjects') }}",function(data){
                 $('#vba_projects').html(data.html);     
              });
+
+
+             setTimeout(function() { 
+                    $("#contact-us-message").slideUp(1000);
+                }, 3000);
              
         }); //end of ready function
     </script>
