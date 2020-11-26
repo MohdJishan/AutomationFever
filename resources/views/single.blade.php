@@ -68,10 +68,15 @@
         <div class="col-sm-8 single-left">
             <div class="song">
                 <div class="video-grid">
-                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1&rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1&rel=0&modestbranding=1&mute=0&controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    
                 </div>
                 <div class="song-info">
                     <h3>{{$video_details->video_title}} 
+                        @if ($next_video_id)
+                            <a href="{{route('single',['video_id'=>$next_video_id->video_id])}}">Next Video</a>    
+                        @endif
+                        
                         @if ($video_details->file1_url!=null AND $video_details->file1_url!=' ' )
                     <a href="{{ asset('vba_codes/'. $video_details->file1_url)}}"><img src="{{asset('images/downloa_code.jpg')}}" width="60" height="35" alt="Download code files" class="float-right" /></a>    
                         @endif
@@ -234,17 +239,32 @@
             <h3>Up Next</h3>
             <div class="single-grid-right">
                 @foreach ($up_next_videos as $item)
-                    <div class="single-right-grids">
-                        <div class="col-md-4 single-right-grid-left">
-                            <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
+                  @if ($item->video_id != $video_id)
+                        <div class="single-right-grids">
+                            <div class="col-md-4 single-right-grid-left">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
+                            </div>
+                            <div class="col-md-8 single-right-grid-right">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
+                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
+                                <p class="views">{{$item->view_count}} views</p>
+                            </div>
+                            <div class="clearfix"> </div>
                         </div>
-                        <div class="col-md-8 single-right-grid-right">
-                            <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
-                            <p class="author"><a href="#" class="author">{{$item->channel_title}}</a></p>
-                            <p class="views">{{$item->view_count}} views</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </div>
+                  @else
+                        <div class="single-right-grids" style="border: 2px solid red; font-weight:900;">
+                            <div class="col-md-4 single-right-grid-left">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
+                            </div>
+                            <div class="col-md-8 single-right-grid-right">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
+                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
+                                <p class="views">{{$item->view_count}} views</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div> 
+                  @endif
+                    
                 @endforeach 
             </div>
         </div>

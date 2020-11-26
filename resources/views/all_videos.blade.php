@@ -61,7 +61,7 @@
 								</div>
 								<div class="col-md-9 single-right-grid-right">
 									<a href="{{route('single',['video_id'=>$item->video_id])}}" class="title">{{'('. ++$indx. ').' }} {{$item->video_title}}</a>
-									<p class="author"><a href="{{route('single',['video_id'=>$item->video_id])}}" class="author">{{$item->channel_title}}</a></p>
+									<p class="author"><a href="{{route('single',['video_id'=>$item->video_id])}}" class="author">Automation Fever</a></p>
 									<p class="views">{{$item->view_count}} views</p>
 									<p>{{\Illuminate\Support\Str::limit($item->description,$limit=500,$end='.....')}}</p>
 								</div>

@@ -36,4 +36,9 @@ Route::post('/send-contact-us','App\Http\Controllers\ContactUsController@Contact
 
 Route::get('/about-us','App\Http\Controllers\AboutUsController@GetAboutUs')->name('about-us');
 
+Route::post('/user-sign-up','App\Http\Controllers\SignUpController@UserSignUp')->name('user-sign-up');
+
+
+Route::get('/redirect', 'Auth\LoginController@redirectToProvider');
+Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
 

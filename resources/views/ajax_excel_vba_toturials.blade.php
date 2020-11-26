@@ -47,7 +47,7 @@
                                     <h5><a href="{{route('single',['video_id'=>$excelVBATutorials[$indx]->video_id])}}" class="title">{{$excelVBATutorials[$indx]->video_title}}</a></h5>
                                         <div class="slid-bottom-grids">
                                             <div class="slid-bottom-grid">
-                                                <p class="author author-info"><a href="#" class="author">{{$excelVBATutorials[$indx]->channel_title}}</a></p>
+                                                <p class="author author-info"><a href="#" class="author">Automation Fever</a></p>
                                             </div>
                                             <div class="slid-bottom-grid slid-bottom-right">
                                                 <p class="views views-info"> {{ number_format($excelVBATutorials[$indx]->view_count,0,'.',',')}} views</p>

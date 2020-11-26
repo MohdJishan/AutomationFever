@@ -50,16 +50,22 @@ class SingleController extends Controller
                                                     'video_id',
                                         )
                                         ->where('playlist',$playlist_name->playlist)
-                                        ->where('video_id','!=',$video_id)
                                         ->orderBy('published_datetime')
                                         ->get();               
         }
-            
-
+          
+        $next_video_id=Videos_lists::select(
+                                             'video_id',
+                                              'video_title')
+                                    ->orderBy('published_datetime')     
+                                    ->where('playlist',$playlist_name->playlist)
+                                    ->where('published_datetime','>',$video_details->published_datetime)
+                                    ->first();          ;                       
         return view('single',[
                                 'video_id'=>$video_id,
                                 'video_details' => $video_details,
                                 'up_next_videos' => $up_next_videos,
+                                'next_video_id' => $next_video_id,
                             ]);
 
     }

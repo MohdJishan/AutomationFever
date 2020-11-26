@@ -38,13 +38,12 @@
               <input type="text" class="form-control" placeholder="Search..." style="font-size: smaller;">
               <input type="submit" value=" ">
               <span style="display: flex;padding-left: 15px;">
-              <a href="#small-dialog2" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;Up</a>
+              <a href="#small-dialog3" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;Up</a>
               <a href="#small-dialog" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;In</a>
               </span>
           </form>
       </div>	          
     </div>
-
 
     <div class="header-top-right">
       <div class="signin">
@@ -91,11 +90,25 @@
                     </div>
                   </div>
                   <div class="signup">
-                    <form>
-                      <input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
-                      <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-                      <input type="text" class="email" placeholder="Mobile Number" maxlength="10" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
-                      <input type="submit"  value="Sign Up"/>
+                    <form name="create_user" id="create_user" method="POST" action="{{ route('user-sign-up') }}" enctype="multipart/form-data">
+                      @csrf
+                      <div class="form-group">
+                        <input type="text" placeholder="Name" class="email form-control form-control-sm" name="user_name"  id="user_name" autocomplete="off" />
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" class="email form-control form-control-sm" id="user_email" name="user_email" placeholder="Email" autocomplete="off" />
+                      </div>
+
+                      <div class="form-group">
+                        <input type="password" class="form-control form-control-sm" placeholder="Password" id="user_password" name="user_password" autocomplete="off" />
+                      </div>
+
+                      <div class="form-group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Mobile Number" id="mobile_number" name="mobile_number" autocomplete="off"  />
+                      </div>
+                                               
+                        <input type="submit"  value="Sign Up"/>
                     </form>
                   </div>
                   <div class="clearfix"> </div>
@@ -114,7 +127,7 @@
                     </div>
                   </div>
                   <div class="signup">
-                    <form action="https://demo.w3layouts.com/demos_new/template_demo/02-05-2020/my_play-demo_Free/236948122/web/upload.php">
+                    <form>
                       <input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
                       <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
                       <input type="submit"  value="Sign In"/>
@@ -174,18 +187,17 @@
                 </div>
                 <script>
                     $(document).ready(function() {
-                    $('.popup-with-zoom-anim').magnificPopup({
-                      type: 'inline',
-                      fixedContentPos: false,
-                      fixedBgPos: true,
-                      overflowY: 'auto',
-                      closeBtnInside: true,
-                      preloader: false,
-                      midClick: true,
-                      removalDelay: 300,
-                      mainClass: 'my-mfp-zoom-in'
-                    });
-                                                    
+                        $('.popup-with-zoom-anim').magnificPopup({
+                          type: 'inline',
+                          fixedContentPos: false,
+                          fixedBgPos: true,
+                          overflowY: 'auto',
+                          closeBtnInside: true,
+                          preloader: false,
+                          midClick: true,
+                          removalDelay: 300,
+                          mainClass: 'my-mfp-zoom-in'
+                        });
                     });
                 </script>	
       </div>
@@ -201,7 +213,7 @@
               <a href="#">Connect with Google</a>
             </div>
             <div class="button-bottom">
-              <p>New account? <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">Signup</a></p>
+              <p>New account? <a href="#small-dialog3" class="play-icon popup-with-zoom-anim">Signup</a></p>
             </div>
           </div>
           <div class="signup">
@@ -219,5 +231,72 @@
       </div>
       <div class="clearfix"> </div>
     </div>
-
   </nav>
+
+      <!-- jquery-validation -->
+      <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
+      <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
+
+      <script>
+        {{-- Form Validation --}}
+        $(document).ready(function(){        
+              $('#create_user').validate({
+                rules:{
+                  user_name:{
+                    required:true,
+                    normalizer: function(user_name) {
+                           return $.trim(user_name);
+                      },
+                  },
+                  user_email:{
+                    required:true,
+                    normalizer: function(user_email) {
+                           return $.trim(user_email);
+                      },
+                    email:true,  
+                  },
+                  user_password:{
+                      required: true,
+                      minlength:6,
+                  },
+                  mobile_number:{
+                      digits: true,
+                      minlength:10,
+                      maxlength:10,
+
+                  },
+                },
+                messages:{
+                      user_name:{
+                        required:'Name is required',
+                      },
+                      user_email:{
+                        required:'Email is required',
+                        email: "Invalid mail address"
+                      },
+                      user_password:{
+                        required:'Comment is required'
+                      },
+                      mobile_number:{
+                        digits: 'Only digits allowed',
+                        minlength: 'Minimum 10 digits required',
+                        minlength: 'Maximum 10 digits required'
+                      },
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of validation
+      }); //end of ready function    
+    </script>   
