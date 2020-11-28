@@ -17,7 +17,7 @@
                         </a>
                     </h3>
                     <ul>
-                        <li><p class="author author-info"><a href="#" class="author">{{$item->channel_title}}</a></p></li>
+                        <li><p class="author author-info"><a href="#" class="author">Automation Fever</a></p></li>
                         <li class="right-list">
                             <p class="views views-info">
                             <span data-views=''>{{$item->view_count}}</span> views

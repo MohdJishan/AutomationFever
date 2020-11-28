@@ -210,7 +210,7 @@
               <a href="#">Connect with Facebook</a>
             </div>
             <div class="chrome-button">
-              <a href="#">Connect with Google</a>
+                <a href="{{ route('login.google') }}">Connect with Google</a>
             </div>
             <div class="button-bottom">
               <p>New account? <a href="#small-dialog3" class="play-icon popup-with-zoom-anim">Signup</a></p>
