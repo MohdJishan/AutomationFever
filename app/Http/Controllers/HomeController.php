@@ -280,5 +280,12 @@ class HomeController extends Controller
                                'playlist_name' => $playlist_name,
                              ]);
     }
-  
+
+    
+   public function Logout(Request $request){
+    $request->session()->forget('name');
+    $request->session()->forget('email');
+    $request->session()->forget('user_mobile_no');
+    return redirect('/');
+   } 
 }

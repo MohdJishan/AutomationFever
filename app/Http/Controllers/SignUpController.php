@@ -15,11 +15,61 @@ class SignUpController extends Controller
         $mobile_number=$request->input('mobile_number');
 
         $user=new User();
-        $user->user_name=$user_name;
-        $user->user_email=$user_email;
-        $user->user_password=Crypt::encrypt($user_password);
+        $user->name=$user_name;
+        $user->email=$user_email;
+        $user->password=Crypt::encrypt($user_password);
         $user->user_mobile_no=$mobile_number;
-        $user->save();
-        return redirect('/');
+        $sign_up_status=$user->save();
+
+        if($sign_up_status>0) {
+            $request->session()->put('name',ucfirst($user->name));
+            $request->session()->put('email',$user->email);
+        }
+
+        return redirect()->back();
+    }
+
+
+    public function CheckUserExistance(Request $request){
+        $email=$request->input('login_user_email');
+        $password=$request->input('login_user_password');
+
+        $user=User::select('email','password')
+                    ->where('email',$email)
+                    ->first();
+
+        if($user){
+            $user_password=Crypt::decrypt($user->password);
+            if($user_password==$password){
+                return response()->json(true);
+            } else{
+                return response()->json(false);
+            }
+        } else{
+            return response()->json(false);
+        }           
+    }
+
+    public function UserSignIn(Request $request){
+        $email=$request->input('login_user_email');
+        $password=$request->input('login_user_password');
+
+        $user=User::select('email','password','name','user_mobile_no')
+                    ->where('email',$email)
+                    ->first();
+
+        if($user){
+            $user_password=Crypt::decrypt($user->password);
+            if($user_password==$password){
+                $request->session()->put('name',ucfirst($user->name));
+                $request->session()->put('email',$user->email);
+                $request->session()->put('user_mobile_no',$user->user_mobile_no);
+                return redirect()->back();
+            } else{
+                return "Incorrect User Credentials";
+            }
+        } else{
+            return "Incorrect User Credentials";
+        }           
     }
 }

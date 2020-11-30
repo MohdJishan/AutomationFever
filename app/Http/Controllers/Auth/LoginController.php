@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use app\Http\Controllers\Auth\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class LoginController extends Controller
 {
@@ -49,13 +51,41 @@ class LoginController extends Controller
     }
 
 
-    public function handleGoogleCallback()
+
+
+    public function handleGoogleCallback(Request $request)
     {
         $user = Socialite::driver('google')->user();
-        // $this->_registerOrLoginUser($user);
+         $this->_registerOrLoginUser($user);
 
-        // return redirect()->route('home');
-       return view('home', ['user'=>$user]);// $user->name;
+        $request->session()->put('name',ucfirst($user->name));
+        $request->session()->put('email',$user->email);
+        
+        
+         return redirect()->route('home');
+      // return view('home', ['user'=>$user]);// $user->name;
+    }
+
+
+
+    public function redirectToFacebook()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+
+    public function handleFacebookCallback(Request $request)
+    {
+        $user = Socialite::driver('facebook')->user();
+         $this->_registerOrLoginUser($user);
+
+
+        $request->session()->put('name',ucfirst($user->name));
+        $request->session()->put('email',$user->email);
+        
+        
+         return redirect()->route('home');
+      // return view('home', ['user'=>$user]);// $user->name;
     }
 
     protected function _registerOrLoginUser($data){
@@ -69,7 +99,7 @@ class LoginController extends Controller
             $user->save();
         }
 
-        Auth::login($user);
+        // Auth::login($user);
     }
 }
 

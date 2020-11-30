@@ -33,16 +33,22 @@
           <a class="nav-link" href="{{route('contact-us')}}" style="color:#ccc6c6">Contact</a>
         </li>
       </ul>
-      <div class="top-search">
-          <form class="navbar-form navbar-right" style="display: flex;">
-              <input type="text" class="form-control" placeholder="Search..." style="font-size: smaller;">
+        <div class="top-search">
+          <form class="navbar-form navbar-right" style="display: inline-block;" name="search_form" id="search_form" method="POST" action="{{ route('videos-search') }}">
+            @csrf
+              <input type="text" class="form-control" name="search_string" id="search_string" required="required" placeholder="Search..." style="font-size: smaller;">
               <input type="submit" value=" ">
-              <span style="display: flex;padding-left: 15px;">
-              <a href="#small-dialog3" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;Up</a>
-              <a href="#small-dialog" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;In</a>
-              </span>
           </form>
-      </div>	          
+                <span style="display: inline-block;margin-top: 10px;">
+              @if (Session::get('name'))
+                  <a href="{{ route('logout')}}" class="float-right" style="text-decoration:none; color:white">Logout</a>
+                  <a href="#" class=" float-right" style="text-decoration:none; color:white">{{\Illuminate\Support\Str::limit(Session::get('name'),$limit=20,$end='..')}}</a>  
+                @else
+                  <a href="#small-dialog3" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;Up</a>
+                  <a href="#small-dialog" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;In</a>              
+                @endif
+            </span>
+      </div>       
     </div>
 
     <div class="header-top-right">
@@ -57,10 +63,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="#">Connect with Facebook</a>
+                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
                     </div>
                     <div class="chrome-button">
-                      <a href="#">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Connect with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -80,10 +86,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="#">Connect with Facebook</a>
+                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
                     </div>
                     <div class="chrome-button">
-                      <a href="#">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Connect with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -105,7 +111,7 @@
                       </div>
 
                       <div class="form-group">
-                        <input type="text" class="form-control form-control-sm" placeholder="Mobile Number" id="mobile_number" name="mobile_number" autocomplete="off"  />
+                        <input type="text" class="email form-control form-control-sm" placeholder="Mobile Number" id="mobile_number" name="mobile_number" autocomplete="off"  />
                       </div>
                                                
                         <input type="submit"  value="Sign Up"/>
@@ -117,10 +123,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="#">Connect with Facebook</a>
+                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
                     </div>
                     <div class="chrome-button">
-                      <a href="#">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Connect with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -207,7 +213,7 @@
           <h3>Login</h3>
           <div class="social-sits">
             <div class="facebook-button">
-              <a href="#">Connect with Facebook</a>
+              <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
             </div>
             <div class="chrome-button">
                 <a href="{{ route('login.google') }}">Connect with Google</a>
@@ -217,9 +223,17 @@
             </div>
           </div>
           <div class="signup">
-            <form>
-              <input type="text" class="email" placeholder="Enter email / mobile" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
-              <input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+            <form id="user_sign_in" name="user_sign_in" method="POST" action="user-sign-in" enctype="multipart/form-data">
+              @csrf
+
+              <div class="form-group">
+                <input type="text" class="email form-control form-control-sm" name="login_user_email" id="login_user_email" placeholder="Enter email" autocomplete="off" />
+              </div>
+             
+              <div class="form-group">
+                <input type="password" class="form-control form-control-sm" name="login_user_password" id="login_user_password" placeholder="Password"  autocomplete="off" />
+              </div>
+              
               <input type="submit"  value="LOGIN"/>
             </form>
             <div class="forgot">
@@ -247,6 +261,7 @@
                     normalizer: function(user_name) {
                            return $.trim(user_name);
                       },
+                    email:false,  
                   },
                   user_email:{
                     required:true,
@@ -263,6 +278,7 @@
                       digits: true,
                       minlength:10,
                       maxlength:10,
+                      email:false,
 
                   },
                 },
@@ -275,7 +291,8 @@
                         email: "Invalid mail address"
                       },
                       user_password:{
-                        required:'Comment is required'
+                        required:'Password is required',
+                        minlength: 'Minimum 16 characters required',
                       },
                       mobile_number:{
                         digits: 'Only digits allowed',
@@ -297,6 +314,74 @@
                   unhighlight: function (element, errorClass, validClass) {
                     $(element).removeClass('is-invalid');
                   }
-              }); //end of validation
+              }); //end of user sign up validation
+
+
+
+
+              $('#user_sign_in').validate({
+                rules:{
+                  login_user_email:{
+                    required:true,
+                    normalizer: function(user_email) {
+                           return $.trim(user_email);
+                      },
+                    email:true,  
+                    remote:{
+                                        url: "{{ URL::route('user_existance') }}",
+                                        type:"GET",
+                                        data: {
+                                          login_user_email: function() {
+                                              return $( "#login_user_email").val();
+                                            },
+                                            login_user_password: function() {
+                                              return $( "#login_user_password").val();
+                                            }
+                                          }
+                                      },
+                  },
+                  login_user_password:{
+                      required: true,
+                      minlength:6,
+                      remote:{
+                                        url: "{{ URL::route('user_existance') }}",
+                                        type:"GET",
+                                        data: {
+                                          login_user_email: function() {
+                                              return $( "#login_user_email").val();
+                                            },
+                                            login_user_password: function() {
+                                              return $( "#login_user_password").val();
+                                            }
+                                          }
+                                      },
+                  },
+                },
+                messages:{
+                      login_user_email:{
+                        required:'Email is required',
+                        email: "Invalid mail address",
+                        remote:'User credentials are incorrect',
+                      },
+                      login_user_password:{
+                        required:'Password is required',
+                        remote:'User credentials are incorrect',
+                      },
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of user sign in validation
       }); //end of ready function    
     </script>   

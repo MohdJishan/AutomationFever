@@ -37,9 +37,9 @@ a.navbar-brand h1 {
 }
 form.navbar-form.navbar-right {
     margin-right: 1em;
-    width: 72%;
+    width: 37%;
     float: left !important;
-    margin-left: 10em;
+    margin-left: 8em;
     position: relative;
 }
 .navbar-form .form-control {
@@ -64,7 +64,7 @@ form.navbar-form.navbar-right {
     position: absolute !important;
     outline: none !important;
     top: 5px;
-    right: 168px;
+    right: 20px;
 }
 .header-top-right {
   float: right;
@@ -2259,8 +2259,8 @@ background: url(../images/social.png) no-repeat 0px 0px;
 		margin: 0;
 	}
 	.top-search form input[type="submit"] {
-	    right: 168px;
-    top: 16px;
+	    right: 20px;
+    top: 15px;
 	}
 	a.navbar-brand {
 	    float: none;

@@ -42,10 +42,19 @@ Route::get('/about-us','App\Http\Controllers\AboutUsController@GetAboutUs')->nam
 
 Route::post('/user-sign-up','App\Http\Controllers\SignUpController@UserSignUp')->name('user-sign-up');
 
+Route::post('/user-sign-in','App\Http\Controllers\SignUpController@UserSignIn')->name('user-sign-in');
+Route::get('/user_existance',array('uses'=>'App\Http\Controllers\SignUpController@CheckUserExistance','as'=>'user_existance'));
+
+Route::get('/logout', 'App\Http\Controllers\HomeController@Logout')->name('logout');
 
 Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
 Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallback']);
 
+Route::get('login/facebook', [App\Http\Controllers\Auth\LoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleFacebookCallback']);
+
+
+Route::post('/videos-search','App\Http\Controllers\SearchController@SearchVideos')->name('videos-search');
 
 Auth::routes();
 
