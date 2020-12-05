@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<script>
+{{-- <script>
 (function(){
 	if(typeof _bsa !== 'undefined' && _bsa) {
   		// format, zoneKey, segment:value, options
@@ -44,10 +44,10 @@ if(typeof _bsa !== 'undefined' && _bsa) {
   		_bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
   	}
 })();
-</script>
+</script> --}}
 <!--<script>(function(v,d,o,ai){ai=d.createElement("script");ai.defer=true;ai.async=true;ai.src=v.location.protocol+o;d.head.appendChild(ai);})(window, document, "//a.vdo.ai/core/w3layouts_V2/vdo.ai.js?vdo=34");</script>-->
-<div id="codefund"><!-- fallback content --></div>
-<script src="../../../../../../../codefund.io/properties/441/funder.js" async="async"></script>
+{{-- <div id="codefund"><!-- fallback content --></div> --}}
+{{-- <script src="../../../../../../../codefund.io/properties/441/funder.js" async="async"></script> --}}
   
 <script
   src="https://code.jquery.com/jquery-3.5.1.min.js"
@@ -61,6 +61,8 @@ if(typeof _bsa !== 'undefined' && _bsa) {
                 <div class="main-grids">
                     @yield('content')
                 </div>
+
+                @include('master-layout.footer')
     </div>    
 
         <!-- Bootstrap core JavaScript

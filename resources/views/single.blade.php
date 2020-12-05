@@ -29,7 +29,7 @@
 
 
 @section('JsAndCss')
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+{{-- <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script> --}}
 
 <!-- bootstrap -->
 <link href="{{ asset('css/bootstrap.min.css') }}" rel='stylesheet' type='text/css' media="all" />
@@ -78,7 +78,7 @@
                         @endif
                         
                         @if ($video_details->file1_url!=null AND $video_details->file1_url!=' ' )
-                    <a href="{{ asset('vba_codes/'. $video_details->file1_url)}}"><img src="{{asset('images/downloa_code.jpg')}}" width="60" height="35" alt="Download code files" class="float-right" /></a>    
+                    <a href="{{ asset('vba_codes/'. $video_details->file1_url)}}"><img src="{{asset('images/download_code.png')}}" width="50" height="30" alt="Download code files" class="float-right" /></a>    
                         @endif
                     </h3>	
                 </div>
@@ -114,126 +114,11 @@
 					<div class="published">
 					<div class="load_more">	
                         <ul id="text-description" data-description="text-description" data-video_id="{{$video_id}}">
+                            
                         </ul>
                     </div>
             </div>
-            <div class="all-comments">
-                {{-- <div class="all-comments-info">
-                    <a href="#">All Comments ({{$video_details->comment_count}})</a>
-                    <div class="box">
-                        <form>
-                          <div class="row">
-                            <div class="col-md-6">
-                              <input type="text" placeholder="Name" required=" ">
-                            </div>
-                            <div class="col-md-6">
-                              <input type="email" placeholder="Email" required=" ">
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-12">
-                                <textarea placeholder="Add a comment.." required=" "></textarea>
-                            </div>
-                          </div>
-                          <input type="submit" value="Comment" style="float:right">
-                            <div class="clearfix"> </div>
-                        </form>
-                    </div>
-                    <div class="all-comments-buttons">
-                        <ul>
-                            <li><a href="#" class="top">Top Comments</a></li>
-                            <li><a href="#" class="top newest">Newest First</a></li>
-                            <li><a href="#" class="top my-comment">My Comments</a></li>
-                        </ul>
-                    </div>
-                </div> --}}
-                {{-- <div class="media-grids">
-                    <div class="media">
-                        <h5>Tom Brown</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Mark Johnson</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Steven Smith</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Marry Johne</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Mark Johnson</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Mark Johnson</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                    <div class="media">
-                        <h5>Peter Johnson</h5>
-                        <div class="media-left">
-                            <a href="#">
-                                
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <p>Maecenas ultricies rhoncus tincidunt maecenas imperdiet ipsum id ex pretium hendrerit maecenas imperdiet ipsum id ex pretium hendrerit</p>
-                            <span>View all posts by :<a href="#"> Admin </a></span>
-                        </div>
-                    </div>
-                </div> --}}
-            </div>
+
         </div>
         <div class="col-md-4 single-right">
             <h3>Up Next</h3>
@@ -268,9 +153,79 @@
                 @endforeach 
             </div>
         </div>
+
+
+        <div class="all-comments">
+            <div class="all-comments-info">
+                <a href="#">All Comments ({{$total_video_comments}})</a>
+                <div class="box">
+                    <form id="post_comment_form" name="post_comment_form" method="POST" action="{{ route('post.comment')}}" enctype="multipart/form-data">
+                      @csrf
+                        <div class="row">
+                        <div class="col-md-6 form-group">
+
+                            @if (Session::get('name'))
+                                <input type="text" id="user_name" value="{{Session::get('name')}}" name="user_name" class="form-control form-control-sm" placeholder="Name" required="required" />
+                            @else
+                                <input type="text" id="user_name" name="user_name" class="form-control form-control-sm" placeholder="Name" required="required" />
+                            @endif
+
+                          </div>
+                        <div class="col-md-6 form-group">
+                            @if (Session::get('email'))
+                            <input type="email" id="user_email" value="{{Session::get('email')}}" name="user_email" class="form-control form-control-sm" placeholder="Email"  required="required" />        
+                            @else
+                            <input type="email" id="user_email" name="user_email" class="form-control form-control-sm" placeholder="Email"  required="required" />
+                            @endif
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 form-group">
+                            <textarea id="user_comment" name="user_comment" placeholder="Add a comment.." class="form-control form-control-sm"  required="required"></textarea>
+                        </div>
+                      </div>
+                      <input type="hidden" name="video_id" value="{{$video_id}}" />
+                      <input type="submit" value="Comment" style="float:right" />
+
+                        <div class="clearfix"> </div>
+                    </form>
+                </div>
+                {{-- <div class="all-comments-buttons">
+                    <ul>
+                        <li><a href="#" class="top">Top Comments</a></li>
+                        <li><a href="#" class="top newest">Newest First</a></li>
+                        <li><a href="#" class="top my-comment">My Comments</a></li>
+                    </ul>
+                </div> --}}
+            </div>
+            <div class="media-grids">
+                @foreach ($comments as $item)
+                        <div class="media">
+                            <h5>{{$item->user_name}}</h5>
+                            <div class="media-left">
+                                {{-- <a href="#">    
+                                </a> --}}
+                            </div>
+                            <div class="media-body">
+                                <p>
+                                    {{$item->comment_body}}
+                                </p>
+                                {{-- <span>View all posts by :<a href="#"> Admin </a></span> --}}
+                            </div>
+                        </div> 
+                @endforeach
+            </div>
+        </div>
+
+
         <div class="clearfix"> </div>
     </div> {{--  <div class="show-top-grids">--}}
 </div>
+
+
+      <!-- jquery-validation -->
+      <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
+      <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
 
 
 
@@ -290,7 +245,61 @@
             $.post("{{URL::route('get-video-text-description') }}",{video_id:video_id},function(data){
                 $('#text-description').html(data.html);     
             });    
+
+
+
+            $('#post_comment_form').validate({
+                rules:{
+                  user_name:{
+                    required:true,
+                    normalizer: function(user_name) {
+                           return $.trim(user_name);
+                      },
+                  },
+                  user_email:{
+                    required:true,
+                    normalizer: function(user_email) {
+                           return $.trim(user_email);
+                      },
+                    email:true,  
+                  },
+                  user_comment:{
+                      require:true,
+                      normalizer: function(user_comment) {
+                           return $.trim(user_comment);
+                      },
+                  }
+                },
+                messages:{
+                      user_name:{
+                        required:'Name is required',
+                      },
+                      user_email:{
+                        required:'Email is required',
+                        email: "Invalid mail address",
+                      },
+                    user_comment:{
+                        required : 'Comment is required'
+                    }  
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of user sign up validation
+
         });
   </script>
+
 
 @endsection

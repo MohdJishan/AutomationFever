@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Videos_lists;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Route;
+use App\Models\Comment;
 
 class SingleController extends Controller
 {
@@ -28,6 +29,19 @@ class SingleController extends Controller
                                     ->where('video_id',$video_id)
                                     ->first();
 
+
+        $comments=Comment::select(
+                                    'id',
+                                    'user_id',
+                                    'user_name',
+                                    'parent_comment_id',
+                                    'comment_body',
+                                )
+                                ->where('video_id',$video_id)
+                                ->orderBy('created_at')
+                                ->get(); 
+        $total_video_comments=Comment::where('video_id',$video_id)
+                                       ->count();                                                   
 
         if($playlist_name==null){
             $up_next_videos=Videos_lists::select(
@@ -60,12 +74,16 @@ class SingleController extends Controller
                                     ->orderBy('published_datetime')     
                                     ->where('playlist',$playlist_name->playlist)
                                     ->where('published_datetime','>',$video_details->published_datetime)
-                                    ->first();          ;                       
+                                    ->first();   
+                                    
+
         return view('single',[
                                 'video_id'=>$video_id,
                                 'video_details' => $video_details,
                                 'up_next_videos' => $up_next_videos,
                                 'next_video_id' => $next_video_id,
+                                'total_video_comments' => $total_video_comments,
+                                'comments' => $comments,
                             ]);
 
     }

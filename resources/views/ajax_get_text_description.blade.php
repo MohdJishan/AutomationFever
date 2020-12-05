@@ -1,5 +1,6 @@
 <div>
-    {{$text_description->text_description}}
+	
+    {!! $text_description->text_description !!}
 </div>
 
 <script type='text/javascript' src='{{ asset("js/shCore.js")}}' id='syntaxhighlighter-core-js'></script>

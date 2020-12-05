@@ -16,7 +16,7 @@
           <a class="nav-link" href="#" style="color:#ccc6c6"> VBA </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" style="color:#ccc6c6"> UiPath </a>
+          {{-- <a class="nav-link" href="#" style="color:#ccc6c6"> UiPath </a> --}}
         </li>
         <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,7 +41,7 @@
           </form>
                 <span style="display: inline-block;margin-top: 10px;">
               @if (Session::get('name'))
-                  <a href="{{ route('logout')}}" class="float-right" style="text-decoration:none; color:white">Logout</a>
+                <a href="{{ route('logout')}}" class="float-right" style="text-decoration:none; color:white">Logout</a>
                   <a href="#" class=" float-right" style="text-decoration:none; color:white">{{\Illuminate\Support\Str::limit(Session::get('name'),$limit=20,$end='..')}}</a>  
                 @else
                   <a href="#small-dialog3" class="play-icon popup-with-zoom-anim  float-right" style="text-decoration:none; color:white">Sign&nbsp;Up</a>
@@ -63,10 +63,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
+                      {{-- <a href="{{ route('login.facebook') }}">Login with Facebook</a> --}}
                     </div>
                     <div class="chrome-button">
-                      <a href="{{ route('login.google') }}">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Login with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -86,10 +86,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
+                      {{-- <a href="{{ route('login.facebook') }}">Login with Facebook</a> --}}
                     </div>
                     <div class="chrome-button">
-                      <a href="{{ route('login.google') }}">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Login with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -123,10 +123,10 @@
                   <h3>Create Account</h3> 
                   <div class="social-sits">
                     <div class="facebook-button">
-                      <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
+                      {{-- <a href="{{ route('login.facebook') }}">Login with Facebook</a> --}}
                     </div>
                     <div class="chrome-button">
-                      <a href="{{ route('login.google') }}">Connect with Google</a>
+                      <a href="{{ route('login.google') }}">Login with Google</a>
                     </div>
                     <div class="button-bottom">
                       <p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
@@ -213,10 +213,10 @@
           <h3>Login</h3>
           <div class="social-sits">
             <div class="facebook-button">
-              <a href="{{ route('login.facebook') }}">Connect with Facebook</a>
+              {{-- <a href="{{ route('login.facebook') }}">Login with Facebook</a> --}}
             </div>
             <div class="chrome-button">
-                <a href="{{ route('login.google') }}">Connect with Google</a>
+                <a href="{{ route('login.google') }}">Login with Google</a>
             </div>
             <div class="button-bottom">
               <p>New account? <a href="#small-dialog3" class="play-icon popup-with-zoom-anim">Signup</a></p>
@@ -269,6 +269,15 @@
                            return $.trim(user_email);
                       },
                     email:true,  
+                    remote:{
+                                        url: "{{ URL::route('is-user-available') }}",
+                                        type:"GET",
+                                        data: {
+                                          user_email: function() {
+                                              return $( "#user_email").val();
+                                            }
+                                          }
+                                      },
                   },
                   user_password:{
                       required: true,
@@ -288,7 +297,8 @@
                       },
                       user_email:{
                         required:'Email is required',
-                        email: "Invalid mail address"
+                        email: "Invalid mail address",
+                        remote: 'An account already existed with this mail.'
                       },
                       user_password:{
                         required:'Password is required',

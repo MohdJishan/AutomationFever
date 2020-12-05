@@ -88,11 +88,20 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <label for="inputEmail4">Full Name</label>
-                  <input type="text" class="form-control form-control-sm" id="full_name" name="full_name" placeholder="Full Name">
+                  @if (Session::get('name'))
+                    <input type="text" class="form-control form-control-sm" value="{{Session::get('name')}}" id="full_name" name="full_name" placeholder="Full Name">
+                  @else
+                     <input type="text" class="form-control form-control-sm" id="full_name" name="full_name" placeholder="Full Name">
+                  @endif
+
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword4">Email</label>
-                  <input type="email" class="form-control form-control-sm" id="mail_address" name="mail_address" placeholder="Email">
+                  @if (Session::get('email'))
+                    <input type="email" class="form-control form-control-sm" id="mail_address" value="{{Session::get('email')}}" name="mail_address" placeholder="Email">    
+                  @else
+                    <input type="email" class="form-control form-control-sm" id="mail_address" name="mail_address" placeholder="Email">                     
+                  @endif              
                 </div>
               </div>
               <div class="form-row">
@@ -102,7 +111,12 @@
                 </div>
                 <div class="form-group col-md-3">
                   <label for="inputZip">Mobile Number</label>
-                  <input type="text" class="form-control" id="mobile_number" name="mobile_number">
+                  @if (Session::get('user_mobile_no'))
+                       <input type="text" class="form-control" value="{{Session::get('user_mobile_no')}}" id="mobile_number" placeholder="Mobile No" name="mobile_number">
+                  @else
+                      <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="Mobile No">
+                  @endif
+                  
                 </div>
               </div>
               <div class="form-row">

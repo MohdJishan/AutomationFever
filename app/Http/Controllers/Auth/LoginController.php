@@ -11,6 +11,7 @@ use App\Models\User;
 use app\Http\Controllers\Auth\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Route;
 
 class LoginController extends Controller
 {
@@ -56,15 +57,16 @@ class LoginController extends Controller
     public function handleGoogleCallback(Request $request)
     {
         $user = Socialite::driver('google')->user();
-         $this->_registerOrLoginUser($user);
-
+        
+        
         $request->session()->put('name',ucfirst($user->name));
         $request->session()->put('email',$user->email);
         
-        
-         return redirect()->route('home');
+        // return $current_route;
+        return redirect()->route('home');
       // return view('home', ['user'=>$user]);// $user->name;
     }
+
 
 
 
@@ -77,13 +79,14 @@ class LoginController extends Controller
     public function handleFacebookCallback(Request $request)
     {
         $user = Socialite::driver('facebook')->user();
-         $this->_registerOrLoginUser($user);
 
+        
 
         $request->session()->put('name',ucfirst($user->name));
         $request->session()->put('email',$user->email);
         
-        
+        $this->_registerOrLoginUser($user);
+
          return redirect()->route('home');
       // return view('home', ['user'=>$user]);// $user->name;
     }

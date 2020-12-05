@@ -50,6 +50,20 @@ class SignUpController extends Controller
         }           
     }
 
+
+    public function IsUserAvailable(Request $request){
+        $user_email=$request->user_email;
+
+        $user_exists_count=User::where('email',$user_email)
+                                ->count();
+        
+         if($user_exists_count>0){
+            return response()->json(false);
+         }    else{
+            return response()->json(true);
+         }                   
+    }
+
     public function UserSignIn(Request $request){
         $email=$request->input('login_user_email');
         $password=$request->input('login_user_password');
@@ -63,7 +77,10 @@ class SignUpController extends Controller
             if($user_password==$password){
                 $request->session()->put('name',ucfirst($user->name));
                 $request->session()->put('email',$user->email);
-                $request->session()->put('user_mobile_no',$user->user_mobile_no);
+                if($user->user_mobile_no<>null){
+                    $request->session()->put('user_mobile_no',$user->user_mobile_no);
+                }
+               
                 return redirect()->back();
             } else{
                 return "Incorrect User Credentials";

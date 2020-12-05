@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact_Us;
+use App\Models\User;
 
 class ContactUsController extends Controller
 {
     public function GetContactUsPage()
     {
+
         return view('contact');
     }
 
