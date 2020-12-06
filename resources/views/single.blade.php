@@ -63,7 +63,7 @@
 @endsection
 
 @section('content')
-<div class="col-sm-12 col-md-12 main">
+
     <div class="show-top-grids">
         <div class="col-sm-8 single-left">
             <div class="song">
@@ -118,44 +118,8 @@
                         </ul>
                     </div>
             </div>
-
-        </div>
-        <div class="col-md-4 single-right">
-            <h3>Up Next</h3>
-            <div class="single-grid-right">
-                @foreach ($up_next_videos as $item)
-                  @if ($item->video_id != $video_id)
-                        <div class="single-right-grids">
-                            <div class="col-md-4 single-right-grid-left">
-                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
-                            </div>
-                            <div class="col-md-8 single-right-grid-right">
-                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
-                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
-                                <p class="views">{{$item->view_count}} views</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div>
-                  @else
-                        <div class="single-right-grids" style="border-left: 5px solid #F46001; font-weight:900; opacity:.4; background-color:#ffffff">
-                            <div class="col-md-4 single-right-grid-left">
-                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
-                            </div>
-                            <div class="col-md-8 single-right-grid-right">
-                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
-                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
-                                <p class="views">{{$item->view_count}} views</p>
-                            </div>
-                            <div class="clearfix"> </div>
-                        </div> 
-                  @endif
-                    
-                @endforeach 
-            </div>
-        </div>
-
-
-        <div class="all-comments">
+			
+			<div class="all-comments">
             <div class="all-comments-info">
                 <a href="#">All Comments ({{$total_video_comments}})</a>
                 <div class="box">
@@ -165,17 +129,17 @@
                         <div class="col-md-6 form-group">
 
                             @if (Session::get('name'))
-                                <input type="text" id="user_name" value="{{Session::get('name')}}" name="user_name" class="form-control form-control-sm" placeholder="Name" required="required" />
+                                <input type="text" id="user_name_comment" value="{{Session::get('name')}}" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @else
-                                <input type="text" id="user_name" name="user_name" class="form-control form-control-sm" placeholder="Name" required="required" />
+                                <input type="text" id="user_name_comment" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @endif
 
                           </div>
                         <div class="col-md-6 form-group">
                             @if (Session::get('email'))
-                            <input type="email" id="user_email" value="{{Session::get('email')}}" name="user_email" class="form-control form-control-sm" placeholder="Email"  required="required" />        
+                            <input type="email" id="user_email_comment" value="{{Session::get('email')}}" name="user_email_comment" class="form-control form-control-sm" placeholder="Email"  required="required" />        
                             @else
-                            <input type="email" id="user_email" name="user_email" class="form-control form-control-sm" placeholder="Email"  required="required" />
+                            <input type="email" id="user_email_comment" name="user_email_comment" class="form-control form-control-sm" placeholder="Email"  required="required" />
                             @endif
                         </div>
                       </div>
@@ -210,6 +174,9 @@
                                 <p>
                                     {{$item->comment_body}}
                                 </p>
+								<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="float:right">
+                                    Reply
+                                </a>
                                 {{-- <span>View all posts by :<a href="#"> Admin </a></span> --}}
                             </div>
                         </div> 
@@ -217,15 +184,50 @@
             </div>
         </div>
 
-
-        <div class="clearfix"> </div>
-    </div> {{--  <div class="show-top-grids">--}}
-</div>
+        </div>
+        <div class="col-md-4 single-right">
+            <h3>Up Next</h3>
+            <div class="single-grid-right">
+                @foreach ($up_next_videos as $item)
+                  @if ($item->video_id != $video_id)
+                        <div class="single-right-grids">
+                            <div class="col-md-4 single-right-grid-left">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
+                            </div>
+                            <div class="col-md-8 single-right-grid-right">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
+                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
+                                <p class="views">{{$item->view_count}} views</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div>
+                  @else
+                        <div class="single-right-grids" style="border-left: 5px solid #F46001; font-weight:900; opacity:.4; background-color:#ffffff">
+                            <div class="col-md-4 single-right-grid-left">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="{{ asset('images/'. $item->thumbnail.'')}}" alt="" /></a>
+                            </div>
+                            <div class="col-md-8 single-right-grid-right">
+                                <a href="{{route('single',['video_id'=>$item->video_id])}}" class="title"> {{$item->video_title}}</a>
+                                <p class="author"><a href="#" class="author">Automation Fever</a></p>
+                                <p class="views">{{$item->view_count}} views</p>
+                            </div>
+                            <div class="clearfix"> </div>
+                        </div> 
+                  @endif
+                    
+                @endforeach 
+            </div>
+			</div>
+			<div class="clearfix"> </div>
+			</div>
+			
 
 
       <!-- jquery-validation -->
       <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
       <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
+	  
+	  
 
 
 
@@ -250,16 +252,16 @@
 
             $('#post_comment_form').validate({
                 rules:{
-                  user_name:{
+                  user_name_comment:{
                     required:true,
-                    normalizer: function(user_name) {
-                           return $.trim(user_name);
+                    normalizer: function(user_name_comment) {
+                           return $.trim(user_name_comment);
                       },
                   },
-                  user_email:{
+                  user_email_comment:{
                     required:true,
-                    normalizer: function(user_email) {
-                           return $.trim(user_email);
+                    normalizer: function(user_email_comment) {
+                           return $.trim(user_email_comment);
                       },
                     email:true,  
                   },
@@ -271,10 +273,10 @@
                   }
                 },
                 messages:{
-                      user_name:{
+                      user_name_comment:{
                         required:'Name is required',
                       },
-                      user_email:{
+                      user_email_comment:{
                         required:'Email is required',
                         email: "Invalid mail address",
                       },
@@ -298,8 +300,68 @@
                   }
               }); //end of user sign up validation
 
-        });
-  </script>
 
+
+              //Reply Validation
+              $('#post_comment_reply').validate({
+                rules:{
+                    user_name_reply:{
+                    required:true,
+                    normalizer: function(user_name_reply) {
+                           return $.trim(user_name_reply);
+                      },
+                  },
+                  user_email_reply:{
+                    required:true,
+                    normalizer: function(user_email_reply) {
+                           return $.trim(user_email_reply);
+                      },
+                    email:true,  
+                  },
+                  user_comment_reply:{
+                      require:true,
+                      normalizer: function(user_comment_reply) {
+                           return $.trim(user_comment_reply);
+                      },
+                  }
+                },
+                messages:{
+                      user_name_reply:{
+                        required:'Name is required',
+                      },
+                      user_email_reply:{
+                        required:'Email is required',
+                        email: "Invalid mail address",
+                      },
+                    user_comment_reply:{
+                        required : 'Comment is required'
+                    }  
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of user sign up validation
+
+
+
+              $('.btn-reply-comment').on('click',function(){
+                    $("#video_id_reply").val($(this).attr('data-video-id'));
+                    $("#comment_id_reply").val($(this).attr('data-comment-id'));                 
+                });  
+
+        });
+		
+  </script>
 
 @endsection

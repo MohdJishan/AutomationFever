@@ -6,7 +6,7 @@ Author URL: http://w3layouts.com
 body{
 	background:#fff;
 	font-size:100%;
-	font-family: 'Open Sans', sans-serif;
+	font-family: Verdana,'Geneva',sans-serif,'Open Sans';
 }
 body a {
   transition: 0.5s all;

@@ -152,32 +152,44 @@
                     </div>
                   </div>
                 </div>
+
                 <div id="small-dialog5" class="mfp-hide">
-                  <h3>Help</h3> 
+                  <h3>Reply</h3> 
                     <div class="help-grid">
-                      <p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-                    </div>
-                    <div class="help-grids">
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog4" class="play-icon popup-with-zoom-anim">Feedback</a></p>
-                      </div>
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Lorem ipsum dolor sit amet</a></p>
-                      </div>
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Nunc vitae rutrum enim</a></p>
-                      </div>
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris at volutpat leo</a></p>
-                      </div>
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris vehicula rutrum velit</a></p>
-                      </div>
-                      <div class="help-button-bottom">
-                        <p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Aliquam eget ante non orci fac</a></p>
-                      </div>
+                      <form id="post_comment_reply" name="post_comment_reply" method="POST" action="{{ route('post.comment.reply')}}" enctype="multipart/form-data">
+                        @csrf
+                          <div class="row">
+                          <div class="col-md-6 form-group">
+  
+                              @if (Session::get('name'))
+                                  <input type="text" id="user_name_reply" value="{{Session::get('name')}}" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
+                              @else
+                                  <input type="text" id="user_name_reply" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
+                              @endif
+  
+                            </div>
+                          <div class="col-md-6 form-group">
+                              @if (Session::get('email'))
+                              <input type="email" id="user_email_reply" value="{{Session::get('email')}}" name="user_email_reply" class="form-control form-control-sm" placeholder="Email"  required="required" />        
+                              @else
+                              <input type="email" id="user_email_reply" name="user_email_reply" class="form-control form-control-sm" placeholder="Email"  required="required" />
+                              @endif
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-12 form-group">
+                              <textarea id="user_comment_reply" name="user_comment_reply" placeholder="Add a comment.." class="form-control form-control-sm"  required="required"></textarea>
+                          </div>
+                        </div>
+                        <input type="hidden" id="video_id_reply" name="video_id_reply" value="" />
+                        <input type="hidden" id="comment_id_reply" name="comment_id_reply" value="" />
+                        <input type="submit" class="btn btn-warning" value="Comment" style="float:right" />
+  
+                          <div class="clearfix"> </div>
+                      </form>
                     </div>
                 </div>
+
                 <div id="small-dialog6" class="mfp-hide">
                   <div class="video-information-text">
                     <h4>Video information & settings</h4>

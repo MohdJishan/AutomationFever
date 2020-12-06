@@ -78,6 +78,7 @@ Route::get('/terms',function(){
 
 Route::post('post-comment','App\Http\Controllers\CommentsController@AddComment')->name('post.comment');
 
+Route::post('post-comment-reply','App\Http\Controllers\CommentsController@ReplyComment')->name('post.comment.reply');
 
 Auth::routes();
 
