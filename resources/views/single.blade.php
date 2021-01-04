@@ -129,7 +129,7 @@
                         <div class="col-md-6 form-group">
 
                             @if (Session::get('name'))
-                                <input type="text" id="user_name_comment" value="{{Session::get('name')}}" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
+                                <input type="hidden" id="user_name_comment" value="{{Session::get('name')}}" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @else
                                 <input type="text" id="user_name_comment" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @endif
@@ -137,7 +137,7 @@
                           </div>
                         <div class="col-md-6 form-group">
                             @if (Session::get('email'))
-                            <input type="email" id="user_email_comment" value="{{Session::get('email')}}" name="user_email_comment" class="form-control form-control-sm" placeholder="Email"  required="required" />        
+                            <input type="hidden" id="user_email_comment" value="{{Session::get('email')}}" name="user_email_comment" class="form-control form-control-sm" placeholder="Email"  required="required" />        
                             @else
                             <input type="email" id="user_email_comment" name="user_email_comment" class="form-control form-control-sm" placeholder="Email"  required="required" />
                             @endif
@@ -173,11 +173,18 @@
                             <div class="media-body">
                                 <p>
                                     {{$item->comment_body}}
+                                    @if ($item->is_reply_found)
+                                      <br>
+                                      @if ($item->reply_count==1)
+                                         <button class="btn btn-link view_replies"> View Reply </button>
+                                      @else
+                                         <button class="btn btn-link view_replies"> View {{$item->reply_count}} replies </button> 
+                                      @endif
+                                    @endif
                                 </p>
-								<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="float:right">
+							                  	<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="float:right">
                                     Reply
                                 </a>
-                                {{-- <span>View all posts by :<a href="#"> Admin </a></span> --}}
                             </div>
                         </div> 
                 @endforeach
@@ -352,8 +359,6 @@
                     $(element).removeClass('is-invalid');
                   }
               }); //end of user sign up validation
-
-
 
               $('.btn-reply-comment').on('click',function(){
                     $("#video_id_reply").val($(this).attr('data-video-id'));

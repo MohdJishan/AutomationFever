@@ -162,7 +162,7 @@
                           <div class="col-md-6 form-group">
   
                               @if (Session::get('name'))
-                                  <input type="text" id="user_name_reply" value="{{Session::get('name')}}" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
+                                  <input type="hidden" id="user_name_reply" value="{{Session::get('name')}}" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
                               @else
                                   <input type="text" id="user_name_reply" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
                               @endif
@@ -170,7 +170,7 @@
                             </div>
                           <div class="col-md-6 form-group">
                               @if (Session::get('email'))
-                              <input type="email" id="user_email_reply" value="{{Session::get('email')}}" name="user_email_reply" class="form-control form-control-sm" placeholder="Email"  required="required" />        
+                              <input type="hidden" id="user_email_reply" value="{{Session::get('email')}}" name="user_email_reply" class="form-control form-control-sm" placeholder="Email"  required="required" />        
                               @else
                               <input type="email" id="user_email_reply" name="user_email_reply" class="form-control form-control-sm" placeholder="Email"  required="required" />
                               @endif

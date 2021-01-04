@@ -79,131 +79,169 @@
 @endsection
 
 @section('content')
-<div class="show-top-grids">
-    <div class="main-grids about-main-grids">
-        <div class="recommended-info">
-            <div class="about-grids">
-            <form id="contact-us-form" name="contact-us-form" action="send-contact-us" method="POST" enctype="multipart/form-data">
-              @csrf
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Full Name</label>
-                  @if (Session::get('name'))
-                    <input type="text" class="form-control form-control-sm" value="{{Session::get('name')}}" id="full_name" name="full_name" placeholder="Full Name">
-                  @else
-                     <input type="text" class="form-control form-control-sm" id="full_name" name="full_name" placeholder="Full Name">
-                  @endif
-
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="inputPassword4">Email</label>
-                  @if (Session::get('email'))
-                    <input type="email" class="form-control form-control-sm" id="mail_address" value="{{Session::get('email')}}" name="mail_address" placeholder="Email">    
-                  @else
-                    <input type="email" class="form-control form-control-sm" id="mail_address" name="mail_address" placeholder="Email">                     
-                  @endif              
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-9">
-                  <label for="inputCity">Subject</label>
-                  <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
-                </div>
-                <div class="form-group col-md-3">
-                  <label for="inputZip">Mobile Number</label>
-                  @if (Session::get('user_mobile_no'))
-                       <input type="text" class="form-control" value="{{Session::get('user_mobile_no')}}" id="mobile_number" placeholder="Mobile No" name="mobile_number">
-                  @else
-                      <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="Mobile No">
-                  @endif
-                  
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label for="inputCity">Comment</label>
-                  <textarea class="form-control" id="user_comment" name="user_comment" placeholder="Comment" rows="3"></textarea>
-                </div>
-              </div>
-              <input type="submit" class="btn btn-primary" value="Send" />
-            </form>
-            </div>
+<div class="show-top-grids" style="min-height:425px;">
+  <div class="main-grids about-main-grids">
+      <div class="recommended-info">
+  <div class="col-md-6">
+    <div class="creators-bottom">
+      <!-- container -->
+      <div class="container">
+        <div class="creators-bottom-grids-info">
+          <h3>The video platform you will love</h3>
         </div>
+        <div class="creators-bottom-grids">
+          <div class="col-md-6 creators-bottom-grid">
+            <div class="services-icon">
+              <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+            </div>
+            <h4>Query</h4>
+            <p>query@automationfever.com </p>
+          </div>
+          <!--<div class="col-md-4 creators-bottom-grid green">
+            <div class="services-icon">
+              <span class="glyphicon glyphicon-magnet" aria-hidden="true"></span>
+            </div>
+            <h4>Engaging</h4>
+            <p>Lorem Ipsum is simply Ipsum has been the industry's text of the printing and typesetting industry. </p>
+          </div>-->
+          <div class="col-md-6 creators-bottom-grid red">
+            <div class="services-icon">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+            </div>
+            <h4>Support</h4>
+            <p>support@automationfever.com</p>
+          </div>
+          <div class="clearfix"> </div>
+        </div>
+      </div>
+      <!-- //container -->
     </div>
+    </div>
+    <div class="col-md-6">
+          <div class="about-grids">
+          <form id="contact-us-form" name="contact-us-form" action="send-contact-us" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="inputEmail4">Full Name</label>
+                @if (Session::get('name'))
+                  <input type="text" class="form-control" value="{{Session::get('name')}}" id="full_name" name="full_name" placeholder="Full Name">
+                @else
+                   <input type="text" class="form-control" id="full_name" name="full_name" placeholder="Full Name">
+                @endif
+
+              </div>
+              <div class="form-group col-md-6">
+                <label for="inputPassword4">Email</label>
+                @if (Session::get('email'))
+                  <input type="text" class="form-control" id="mail_address" value="{{Session::get('email')}}" name="mail_address" placeholder="Email">    
+                @else
+                  <input type="text" class="form-control" id="mail_address" name="mail_address" placeholder="Email">                     
+                @endif              
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-9">
+                <label for="inputCity">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject">
+              </div>
+              <div class="form-group col-md-3">
+                <label for="inputZip">Mobile Number</label>
+                @if (Session::get('user_mobile_no'))
+                     <input type="text" class="form-control" value="{{Session::get('user_mobile_no')}}" id="mobile_number" placeholder="Mobile No" name="mobile_number">
+                @else
+                    <input type="text" class="form-control" id="mobile_number" name="mobile_number" placeholder="Mobile No">
+                @endif
+                
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <label for="inputCity">Comment</label>
+                <textarea class="form-control" id="user_comment" name="user_comment" placeholder="Comment" rows="3"></textarea>
+              </div>
+            </div>
+            <input type="submit" class="btn" style="background: #F46001; color:white" value="Send" />
+          </form>
+          </div>
+    </div>
+    <div class="clearfix"> </div>
+      </div>
+  </div>
 </div>
 
-    <!-- jquery-validation -->
-    <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
+  <!-- jquery-validation -->
+  <script src="{{ asset('js/jquery-validation/jquery.validate.min.js') }}"></script>
+  <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
 
 
-    <script>
-          {{-- Form Validation --}}
-          $(document).ready(function(){        
-                $('#contact-us-form').validate({
-                  rules:{
-                    full_name:{
-                      required:true,
-                      normalizer: function(full_name) {
-                             return $.trim(full_name);
-                        },
-                    },
-                    mail_address:{
-                      required:true,
-                      normalizer: function(mail_address) {
-                             return $.trim(mail_address);
-                        },
-                      email:true,  
-                    },
-                    subject:{
-                      required:true,
-                      normalizer: function(subject) {
-                             return $.trim(subject);
-                        },
-                    },
-                    mobile_number:{
-                        digits: true,
-                        minlength:10,
-                        maxlength:10,
-
-                    },
-                    user_comment:{
-                      required:true,
-                      normalizer: function(user_comment) {
-                             return $.trim(user_comment);
-                        },
-                    },
+  <script>
+        {{-- Form Validation --}}
+        $(document).ready(function(){        
+              $('#contact-us-form').validate({
+                rules:{
+                  full_name:{
+                    required:true,
+                    normalizer: function(full_name) {
+                           return $.trim(full_name);
+                      },
                   },
-                  messages:{
-                        full_name:{
-                          required:'Name is required',
-                        },
-                        mail_address:{
-                          required:'Email is required',
-                          email: "Invalid mail address"
-                        },
-                        subject:{
-                          required:'Subject is required'
-                        },
-                        user_comment:{
-                          required:'Comment is required'
-                        },
+                  mail_address:{
+                    required:true,
+                    normalizer: function(mail_address) {
+                           return $.trim(mail_address);
+                      },
+                    email:true,  
                   },
-                    submitHandler: function (form) {
-                      form.submit();
-                    },
-                    errorElement: 'span',
-                    errorPlacement: function (error, element) {
-                      error.addClass('invalid-feedback');
-                      element.closest('.form-group').append(error);
-                    },
-                    highlight: function (element, errorClass, validClass) {
-                      $(element).addClass('is-invalid');
-                    },
-                    unhighlight: function (element, errorClass, validClass) {
-                      $(element).removeClass('is-invalid');
-                    }
-                }); //end of validation
-        }); //end of ready function    
-      </script>   
+                  subject:{
+                    required:true,
+                    normalizer: function(subject) {
+                           return $.trim(subject);
+                      },
+                  },
+                  mobile_number:{
+                      digits: true,
+                      minlength:10,
+                      maxlength:10,
+
+                  },
+                  user_comment:{
+                    required:true,
+                    normalizer: function(user_comment) {
+                           return $.trim(user_comment);
+                      },
+                  },
+                },
+                messages:{
+                      full_name:{
+                        required:'Name is required',
+                      },
+                      mail_address:{
+                        required:'Email is required',
+                        email: "Invalid mail address"
+                      },
+                      subject:{
+                        required:'Subject is required'
+                      },
+                      user_comment:{
+                        required:'Comment is required'
+                      },
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of validation
+      }); //end of ready function    
+    </script>   
 @endsection

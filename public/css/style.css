@@ -6,7 +6,7 @@ Author URL: http://w3layouts.com
 body{
 	background:#fff;
 	font-size:100%;
-	font-family: Verdana,'Geneva',sans-serif,'Open Sans';
+	font-family: 'Open Sans', sans-serif;
 }
 body a {
   transition: 0.5s all;
@@ -1173,9 +1173,7 @@ width:100%;
     font-size: 13px;
 	border-bottom:1px solid lightgrey;
 }
-.box input[type="text"]:nth-child(2) {
-    margin: 1em 0;
-}
+
 .box textarea {
     resize: none;
     min-height: 10px;
@@ -1275,12 +1273,6 @@ width:100%;
 .media-body  span a {
     color: #F46001;
     text-decoration: none;
-}
-.media:nth-child(3) {
-  padding-left: 4em;
-}
-.media:nth-child(5) {
-  padding-left: 4em;
 }
 .single-grid-right{
 	margin-top:2em;
