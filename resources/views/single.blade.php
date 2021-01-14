@@ -123,17 +123,15 @@
             <div class="all-comments-info">
                 <a href="#">All Comments ({{$total_video_comments}})</a>
                 <div class="box">
-                    <form id="post_comment_form" name="post_comment_form" method="POST" action="{{ route('post.comment')}}" enctype="multipart/form-data">
+                    <form id="post_comment_form" name="post_comment_form" method="POST" enctype="multipart/form-data">
                       @csrf
                         <div class="row">
                         <div class="col-md-6 form-group">
-
                             @if (Session::get('name'))
                                 <input type="hidden" id="user_name_comment" value="{{Session::get('name')}}" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @else
                                 <input type="text" id="user_name_comment" name="user_name_comment" class="form-control form-control-sm" placeholder="Name" required="required" />
                             @endif
-
                           </div>
                         <div class="col-md-6 form-group">
                             @if (Session::get('email'))
@@ -148,9 +146,9 @@
                             <textarea id="user_comment" name="user_comment" placeholder="Add a comment.." class="form-control form-control-sm"  required="required"></textarea>
                         </div>
                       </div>
-                      <input type="hidden" name="video_id" value="{{$video_id}}" />
-                      <input type="submit" value="Comment" style="float:right" />
-
+                      <input type="hidden" id="video_id" name="video_id" value="{{$video_id}}" />
+                      <button type="button" id="add_comment" name="add_comment" style="float:right">Comment</button>
+                      {{-- <input type="submit" id="add_comment" name="add_comment" value="Comment" style="float:right" /> --}}
                         <div class="clearfix"> </div>
                     </form>
                 </div>
@@ -162,7 +160,7 @@
                     </ul>
                 </div> --}}
             </div>
-            <div class="media-grids">
+            <div class="media-grids" id="comments_area">
                 @foreach ($comments as $item)
                         <div class="media">
                             <h5>{{$item->user_name}}</h5>
@@ -173,14 +171,17 @@
                             <div class="media-body">
                                 <p>
                                     {{$item->comment_body}}
+                                  <div>
                                     @if ($item->is_reply_found)
-                                      <br>
-                                      @if ($item->reply_count==1)
-                                         <button class="btn btn-link view_replies"> View Reply </button>
-                                      @else
-                                         <button class="btn btn-link view_replies"> View {{$item->reply_count}} replies </button> 
+                                        @if ($item->reply_count==1)
+                                          <button class="btn btn-link btn-view-comment" data-view-count="0"  data-comment-id="{{$item->id}}"> View Reply </button>
+                                        @else
+                                          <button class="btn btn-link btn-view-comment" data-view-count="0"  data-comment-id="{{$item->id}}"> View {{$item->reply_count}} replies </button> 
+                                        @endif
                                       @endif
-                                    @endif
+                                   </div>
+                                    <div data-view-comment-div="{{$item->id}}">
+                                    </div> 
                                 </p>
 							                  	<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="float:right">
                                     Reply
@@ -189,8 +190,7 @@
                         </div> 
                 @endforeach
             </div>
-        </div>
-
+          </div>
         </div>
         <div class="col-md-4 single-right">
             <h3>Up Next</h3>
@@ -221,7 +221,6 @@
                             <div class="clearfix"> </div>
                         </div> 
                   @endif
-                    
                 @endforeach 
             </div>
 			</div>
@@ -255,6 +254,47 @@
                 $('#text-description').html(data.html);     
             });    
 
+           //Add comment throgh ajax request
+            $("#add_comment").on('click',function(data){
+              var user_name_comment=$('#user_name_comment').val();
+              var user_email_comment=$('#user_email_comment').val();
+              var user_comment=$('#user_comment').val();
+              var video_id=$('#video_id').val();
+              
+              $.post("{{URL::route('post.comment') }}",{
+                          user_name_comment:user_name_comment,
+                          user_email_comment:user_email_comment,
+                          user_comment:user_comment,
+                          video_id:video_id,
+                     },function(data){
+                       $('#user_comment').val('');
+                       $('#comments_area').prepend(data.html);
+               });
+            });
+
+            
+
+            
+
+            //Show comment Reply
+               $('.btn-view-comment').on('click',function(){
+                   var comment_id=$(this).attr('data-comment-id');
+                   var txt=$("div[data-view-comment-div='"+comment_id+"']").html();
+                   var view_count=$(this).attr('data-view-count');
+            
+                    if(view_count==1){
+                      $(this).html('View Reply'); 
+                      $("div[data-view-comment-div='"+comment_id+"']").slideToggle(700);                     
+                    }else{
+                      $(this).html('Hide Reply');
+                      $(this).attr('data-view-count','1');
+                    $("div[data-view-comment-div='"+comment_id+"']").slideUp(300);
+                    $.post("{{URL::route('view-comment-replies') }}",{comment_id:comment_id},function(data){        
+                            $("div[data-view-comment-div='"+comment_id+"']").html(data.html);
+                            $("div[data-view-comment-div='"+comment_id+"']").slideDown(700);
+                      });    
+                    } //else
+               });
 
 
             $('#post_comment_form').validate({
@@ -310,63 +350,60 @@
 
 
               //Reply Validation
-              $('#post_comment_reply').validate({
-                rules:{
-                    user_name_reply:{
-                    required:true,
-                    normalizer: function(user_name_reply) {
-                           return $.trim(user_name_reply);
-                      },
-                  },
-                  user_email_reply:{
-                    required:true,
-                    normalizer: function(user_email_reply) {
-                           return $.trim(user_email_reply);
-                      },
-                    email:true,  
-                  },
-                  user_comment_reply:{
-                      require:true,
-                      normalizer: function(user_comment_reply) {
-                           return $.trim(user_comment_reply);
-                      },
-                  }
-                },
-                messages:{
-                      user_name_reply:{
-                        required:'Name is required',
-                      },
-                      user_email_reply:{
-                        required:'Email is required',
-                        email: "Invalid mail address",
-                      },
-                    user_comment_reply:{
-                        required : 'Comment is required'
-                    }  
-                },
-                  submitHandler: function (form) {
-                    form.submit();
-                  },
-                  errorElement: 'span',
-                  errorPlacement: function (error, element) {
-                    error.addClass('invalid-feedback');
-                    element.closest('.form-group').append(error);
-                  },
-                  highlight: function (element, errorClass, validClass) {
-                    $(element).addClass('is-invalid');
-                  },
-                  unhighlight: function (element, errorClass, validClass) {
-                    $(element).removeClass('is-invalid');
-                  }
-              }); //end of user sign up validation
+              // $('#post_comment_reply').validate({
+              //   rules:{
+              //       user_name_reply:{
+              //       required:true,
+              //       normalizer: function(user_name_reply) {
+              //              return $.trim(user_name_reply);
+              //         },
+              //     },
+              //     user_email_reply:{
+              //       required:true,
+              //       normalizer: function(user_email_reply) {
+              //              return $.trim(user_email_reply);
+              //         },
+              //       email:true,  
+              //     },
+              //     user_comment_reply:{
+              //         require:true,
+              //         normalizer: function(user_comment_reply) {
+              //              return $.trim(user_comment_reply);
+              //         },
+              //     }
+              //   },
+              //   messages:{
+              //         user_name_reply:{
+              //           required:'Name is required',
+              //         },
+              //         user_email_reply:{
+              //           required:'Email is required',
+              //           email: "Invalid mail address",
+              //         },
+              //       user_comment_reply:{
+              //           required : 'Comment is required'
+              //       }  
+              //   },
+              //     submitHandler: function (form) {
+              //       form.submit();
+              //     },
+              //     errorElement: 'span',
+              //     errorPlacement: function (error, element) {
+              //       error.addClass('invalid-feedback');
+              //       element.closest('.form-group').append(error);
+              //     },
+              //     highlight: function (element, errorClass, validClass) {
+              //       $(element).addClass('is-invalid');
+              //     },
+              //     unhighlight: function (element, errorClass, validClass) {
+              //       $(element).removeClass('is-invalid');
+              //     }
+              // }); //end of user sign up validation
 
               $('.btn-reply-comment').on('click',function(){
                     $("#video_id_reply").val($(this).attr('data-video-id'));
                     $("#comment_id_reply").val($(this).attr('data-comment-id'));                 
-                });  
-
+                });     
         });
-		
   </script>
-
 @endsection

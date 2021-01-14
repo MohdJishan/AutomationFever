@@ -80,6 +80,8 @@ Route::post('post-comment','App\Http\Controllers\CommentsController@AddComment')
 
 Route::post('post-comment-reply','App\Http\Controllers\CommentsController@ReplyComment')->name('post.comment.reply');
 
+Route::post('view-comment-replies','App\Http\Controllers\SingleController@GetCommentReplies')->name('view-comment-replies');
+
 Auth::routes();
 
 

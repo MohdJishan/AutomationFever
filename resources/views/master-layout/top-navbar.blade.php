@@ -156,17 +156,15 @@
                 <div id="small-dialog5" class="mfp-hide">
                   <h3>Reply</h3> 
                     <div class="help-grid">
-                      <form id="post_comment_reply" name="post_comment_reply" method="POST" action="{{ route('post.comment.reply')}}" enctype="multipart/form-data">
+                      <form id="post_comment_reply" name="post_comment_reply"  enctype="multipart/form-data">
                         @csrf
                           <div class="row">
                           <div class="col-md-6 form-group">
-  
                               @if (Session::get('name'))
                                   <input type="hidden" id="user_name_reply" value="{{Session::get('name')}}" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
                               @else
                                   <input type="text" id="user_name_reply" name="user_name_reply" class="form-control form-control-sm" placeholder="Name" required="required" />
                               @endif
-  
                             </div>
                           <div class="col-md-6 form-group">
                               @if (Session::get('email'))
@@ -183,8 +181,7 @@
                         </div>
                         <input type="hidden" id="video_id_reply" name="video_id_reply" value="" />
                         <input type="hidden" id="comment_id_reply" name="comment_id_reply" value="" />
-                        <input type="submit" class="btn btn-warning" value="Comment" style="float:right" />
-  
+                        <input type="button" class="btn btn-warning reply-btn-comment" value="Comment" style="float:right" />
                           <div class="clearfix"> </div>
                       </form>
                     </div>
@@ -264,6 +261,23 @@
       <script src="{{ asset('js/jquery-validation/additional-methods.min.js') }}"></script>
 
       <script>
+        //Add comment reply through ajax request
+        $('.reply-btn-comment').on('click',function(data){
+                var user_name_reply=$('#user_name_reply').val();
+                var user_email_reply=$('#user_email_reply').val();
+                var user_comment_reply=$('#user_comment_reply').val();
+                var video_id_reply=$('#video_id_reply').val();
+               
+                $.post("{{URL::route('post.comment.reply')}}",{
+                            user_name_reply:user_name_reply,
+                            user_email_reply:user_email_reply,
+                            user_comment_reply:user_comment_reply,
+                            video_id_reply:video_id_reply,
+                      },function(data){
+                          alert(data.html);
+                });
+            });
+
         {{-- Form Validation --}}
         $(document).ready(function(){        
               $('#create_user').validate({

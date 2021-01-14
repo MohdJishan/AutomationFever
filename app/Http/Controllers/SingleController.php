@@ -6,7 +6,7 @@ use App\Models\Videos_lists;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Comment;
-use app\models\Comments_reply;
+use App\Models\Comments_replys;
 
 class SingleController extends Controller
 {
@@ -110,13 +110,15 @@ class SingleController extends Controller
 
     public function GetCommentReplies(Request $request){
         $comment_id=$request->comment_id;
-        $comment_replies=Comment_replys::select(
+        $comment_replies=Comments_replys::select(
                                                     'comment_id',
                                                     'user_id',
                                                     'user_name',
-                                                    'comment_body'
+                                                    'comment_body',
+                                                    'video_id'
                                                 )
                                         ->where('comment_id',$comment_id)
+                                        ->orderBy('created_at')
                                         ->get();
 
 
