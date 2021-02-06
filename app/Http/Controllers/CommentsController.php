@@ -35,6 +35,7 @@ class CommentsController extends Controller
     }
 
     public function ReplyComment(Request $request){
+
         $user_name=$request->user_name_reply;
         $user_email=$request->user_email_reply;
         $user_comment=$request->user_comment_reply;
@@ -64,16 +65,6 @@ class CommentsController extends Controller
             Comment::where('id',$comment->id)
                      ->update(['reply_count'=>$comment->reply_count+1]);
           }                   
-
-          $returnHTML=view('ajax_comment_reply',[
-            'comment_id' => $comment->id,
-            'video_id' => $video_id,
-            'comment_body' => $user_comment,
-            'user_name' => $user_name,
-          ])->render();  
-
-
-       return response()->json(array('success'=>true,'html'=>$returnHTML)); 
-        // return redirect()->back();        
+        return redirect()->back();        
     }
 }

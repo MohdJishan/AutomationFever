@@ -9,7 +9,7 @@
         <p>
             {{$item->comment_body}}
         </p>
-        <a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$item->video_id}}" data-comment-id="{{$item->id}}" style="float:right">
+        <a href="#small-dialog5" class="play-icon popup-with-zoom-anim comment_button btn-sm btn-reply-comment" data-video-id="{{$item->video_id}}" data-comment-id="{{$item->id}}"  style="padding:3px 8px 3px 8px">
             Reply
         </a>
     </div>

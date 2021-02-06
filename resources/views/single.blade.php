@@ -68,7 +68,7 @@
         <div class="col-sm-8 single-left">
             <div class="song">
                 <div class="video-grid">
-                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=1&rel=0&modestbranding=1&mute=0&controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/{{$video_id}}?autoplay=0&rel=0&modestbranding=1&mute=0&controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     
                 </div>
                 <div class="song-info">
@@ -147,7 +147,7 @@
                         </div>
                       </div>
                       <input type="hidden" id="video_id" name="video_id" value="{{$video_id}}" />
-                      <button type="button" id="add_comment" name="add_comment" style="float:right">Comment</button>
+                      <button type="button" id="add_comment" name="add_comment" class="comment_button">Comment</button>
                       {{-- <input type="submit" id="add_comment" name="add_comment" value="Comment" style="float:right" /> --}}
                         <div class="clearfix"> </div>
                     </form>
@@ -183,7 +183,7 @@
                                     <div data-view-comment-div="{{$item->id}}">
                                     </div> 
                                 </p>
-							                  	<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn btn-warning btn-reply-comment" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="float:right">
+							                  	<a href="#small-dialog5" class="play-icon popup-with-zoom-anim btn-sm btn-reply-comment comment_button" data-video-id="{{$video_id}}" data-comment-id="{{$item->id}}" style="padding:3px 8px 3px 8px">
                                     Reply
                                 </a>
                             </div>
@@ -272,7 +272,22 @@
                });
             });
 
-            
+            //Add comment reply through ajax request
+            $('.btn-reply-comments').on('click',function(data){
+                var user_name_reply=$('#user_name_reply').val();
+                var user_email_reply=$('#user_email_reply').val();
+                var user_comment_reply=$('#user_comment_reply').val();
+                var video_id_reply=$('#video_id_reply').val();
+                
+                $.post("{{URL::route('post.comment') }}",{
+                            user_name_reply:user_name_reply,
+                            user_email_reply:user_email_reply,
+                            user_comment_reply:user_comment_reply,
+                            video_id_reply:video_id_reply,
+                      },function(data){
+                          alert(data.html);
+                });
+            });
 
             
 
@@ -350,55 +365,55 @@
 
 
               //Reply Validation
-              // $('#post_comment_reply').validate({
-              //   rules:{
-              //       user_name_reply:{
-              //       required:true,
-              //       normalizer: function(user_name_reply) {
-              //              return $.trim(user_name_reply);
-              //         },
-              //     },
-              //     user_email_reply:{
-              //       required:true,
-              //       normalizer: function(user_email_reply) {
-              //              return $.trim(user_email_reply);
-              //         },
-              //       email:true,  
-              //     },
-              //     user_comment_reply:{
-              //         require:true,
-              //         normalizer: function(user_comment_reply) {
-              //              return $.trim(user_comment_reply);
-              //         },
-              //     }
-              //   },
-              //   messages:{
-              //         user_name_reply:{
-              //           required:'Name is required',
-              //         },
-              //         user_email_reply:{
-              //           required:'Email is required',
-              //           email: "Invalid mail address",
-              //         },
-              //       user_comment_reply:{
-              //           required : 'Comment is required'
-              //       }  
-              //   },
-              //     submitHandler: function (form) {
-              //       form.submit();
-              //     },
-              //     errorElement: 'span',
-              //     errorPlacement: function (error, element) {
-              //       error.addClass('invalid-feedback');
-              //       element.closest('.form-group').append(error);
-              //     },
-              //     highlight: function (element, errorClass, validClass) {
-              //       $(element).addClass('is-invalid');
-              //     },
-              //     unhighlight: function (element, errorClass, validClass) {
-              //       $(element).removeClass('is-invalid');
-              //     }
-              // }); //end of user sign up validation
+              $('#post_comment_reply').validate({
+                rules:{
+                    user_name_reply:{
+                    required:true,
+                    normalizer: function(user_name_reply) {
+                           return $.trim(user_name_reply);
+                      },
+                  },
+                  user_email_reply:{
+                    required:true,
+                    normalizer: function(user_email_reply) {
+                           return $.trim(user_email_reply);
+                      },
+                    email:true,  
+                  },
+                  user_comment_reply:{
+                      require:true,
+                      normalizer: function(user_comment_reply) {
+                           return $.trim(user_comment_reply);
+                      },
+                  }
+                },
+                messages:{
+                      user_name_reply:{
+                        required:'Name is required',
+                      },
+                      user_email_reply:{
+                        required:'Email is required',
+                        email: "Invalid mail address",
+                      },
+                    user_comment_reply:{
+                        required : 'Comment is required'
+                    }  
+                },
+                  submitHandler: function (form) {
+                    form.submit();
+                  },
+                  errorElement: 'span',
+                  errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                  },
+                  highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                  },
+                  unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                  }
+              }); //end of user sign up validation
 
               $('.btn-reply-comment').on('click',function(){
                     $("#video_id_reply").val($(this).attr('data-video-id'));
