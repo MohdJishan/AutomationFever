@@ -54,7 +54,8 @@ class HomeController extends Controller
                                               'video_title',
                                               'thumbnail',
                                               'view_count',
-                                              'duration'
+                                              'duration',
+                                              'page_url'
                                             )
                                             ->limit(3)
                                             ->orderBy('published_datetime','desc')
@@ -68,14 +69,15 @@ class HomeController extends Controller
   
   
         public function GetExcelVbaToturials(Request $request){
-          $playlist_name='Excel VBA Tutorials in Hindi';
+          $playlist_name=$request->playlist_name;
           $excelVBATutorials=Videos_lists::select(
                                                   'video_id',
                                                   'channel_title',
                                                   'video_title',
                                                   'thumbnail',
                                                   'view_count',
-                                                  'duration'
+                                                  'duration',
+                                                  'page_url'
                                                 )
                                                 ->where('parent_playlist',$playlist_name)
                                                 ->limit(4)
@@ -92,6 +94,8 @@ class HomeController extends Controller
                                                         'count_excelVBATutorials' => $count_excelVBATutorials,
                                                         'playlist_name' => $playlist_name,
                                                         ])->render();  
+
+                                                        
   
           return response()->json(array('success'=>true,'html'=>$returnHTML));                                      
   
@@ -105,7 +109,8 @@ class HomeController extends Controller
                                           'video_title',
                                           'thumbnail',
                                           'view_count',
-                                          'duration'
+                                          'duration',
+                                          'page_url'
                                         )
                                         ->where('playlist',$playlist_name)
                                         ->orderBy('published_datetime','desc')
@@ -133,7 +138,8 @@ class HomeController extends Controller
                                                 'video_title',
                                                 'thumbnail',
                                                 'view_count',
-                                                'duration'
+                                                'duration',
+                                                'page_url'
                                               )
                                               ->where('playlist','VBA - Text To Columns in Hindi')
                                               ->orderBy('published_datetime','desc')
@@ -160,7 +166,8 @@ class HomeController extends Controller
                                           'video_title',
                                           'thumbnail',
                                           'view_count',
-                                          'duration'
+                                          'duration',
+                                          'page_url'
                                         )
                                         ->where('playlist',$playlist_name)
                                         ->orderBy('published_datetime','desc')
@@ -190,7 +197,8 @@ class HomeController extends Controller
                                                 'video_title',
                                                 'thumbnail',
                                                 'view_count',
-                                                'duration'
+                                                'duration',
+                                                'page_url'
                                               )
                                               ->where('playlist',$playlist_name)
                                               ->orderBy('published_datetime','desc')
@@ -218,7 +226,8 @@ class HomeController extends Controller
                                         'video_title',
                                         'thumbnail',
                                         'view_count',
-                                        'duration'
+                                        'duration',
+                                        'page_url'
                                       )
                                       ->where('playlist',$playlist_name)
                                       ->orderBy('published_datetime','desc')
@@ -248,6 +257,7 @@ class HomeController extends Controller
                                             'view_count',
                                             'duration',
                                             'description',
+                                            'page_url',
                                           )
                                     ->where('parent_playlist',$playlist_name)
                                     ->orderBy('published_datetime')
@@ -270,6 +280,7 @@ class HomeController extends Controller
                                            'view_count',
                                            'duration',
                                            'description',
+                                           'page_url',
                                          )
                                    ->where('playlist',$playlist_name)
                                    ->orderBy('published_datetime')

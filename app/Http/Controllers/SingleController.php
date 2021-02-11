@@ -130,4 +130,67 @@ class SingleController extends Controller
 
         return response()->json(array('success'=>true,'html'=>$returnHTML));                                
     }
+
+
+
+
+    protected function GetVideoComments(Request $request){
+        $video_id=$request->video_id;
+
+       //Get all video comments 
+        $comments=Comment::select(
+                                    'id',
+                                    'user_id',
+                                    'user_name',
+                                    'comment_body',
+                                    'is_reply_found',
+                                    'reply_count',
+                                )
+                                ->where('video_id',$video_id)
+                                ->orderBy('created_at','desc')
+                                ->get(); 
+
+        
+        $returnHTML=view('basic_vba.ajax_user_comments',[
+                            'video_id' => $video_id,
+                            'comments' => $comments
+                            ])->render();        
+        
+        return response()->json(array('success'=>true,'html'=>$returnHTML));                         
+    }
+
+    protected function GetCommentsCount(Request $request){
+        $video_id=$request->video_id;
+
+        $total_video_comments=Comment::where('video_id',$video_id)
+                                       ->count(); 
+
+        return response()->json(array('success'=>true,'html'=>$total_video_comments)); 
+    }
+
+
+    protected function GetNextVideo(Request $request){
+        $video_id=$request->video_id;
+        $playlist_name=$request->playlist_name;
+        $published_datetime=$request->published_datetime;
+
+            $up_next_videos=Videos_lists::select(
+                                                    'thumbnail',
+                                                    'video_title',
+                                                    'channel_title',
+                                                    'view_count',
+                                                    'video_id',
+                                        )
+                                        ->where('parent_playlist',$playlist_name)
+                                        ->orderBy('published_datetime')
+                                        ->get();                                
+
+       
+        $returnHTML=view('basic_vba.ajax_next_videos',[
+                                    'video_id' => $video_id,
+                                    'up_next_videos' => $up_next_videos
+                                    ])->render();        
+                
+        return response()->json(array('success'=>true,'html'=>$returnHTML));                        
+    }
 }

@@ -18,6 +18,7 @@ class SearchController extends Controller
                                                 'view_count',
                                                 'duration',
                                                 'description',
+                                                'page_url',
                                             )
                                         ->where('video_title','like','%'.$search_string.'%')
                                         ->orderBy('published_datetime')
@@ -31,6 +32,7 @@ class SearchController extends Controller
                                             'view_count',
                                             'duration',
                                             'description',
+                                            'page_url',
                                         )
                                     ->where('video_title','like','%'.$search_string.'%')
                                     ->count();   

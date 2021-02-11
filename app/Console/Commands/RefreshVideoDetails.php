@@ -80,6 +80,8 @@ class RefreshVideoDetails extends Command
                                                     'dislike_count' => $dislikeCount,
                                                     'comment_count'=> $commentCount
                                                 ]);
+
+                        
                                                 
                 } //end of foreach loop
             }// end of for loop    

@@ -4,7 +4,7 @@
 @foreach ($vbaTextToCols as $item)
     <div class="col-md-3 resent-grid recommended-grid">
         <div class="resent-grid-img recommended-grid-img">
-            <a href="{{route('single',['video_id'=>$item->video_id])}}"><img src="images/{{$item->thumbnail}}" alt="" /></a>
+            <a href="{{$item->page_url}}"><img src="images/{{$item->thumbnail}}" alt="" /></a>
             <div class="time small-time">
                 <p>{{$item->duration}}</p>
             </div>

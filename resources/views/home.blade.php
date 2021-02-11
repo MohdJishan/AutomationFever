@@ -81,6 +81,15 @@
 
 
 @section('content')
+
+        @php
+                $VbaBeginnerTutorial_playlist="VBA Tutorial for beginners(Hindi)";
+                $VbaProject_playlist="Excel VBA Projects (Hindi)";
+                $VbaAdvancedVbaTutorial_playlist="Advanced VBA Tutorials (Hindi)";
+                $VbaOutlook_playlist="VBA - Outlook Automation (Hindi)";
+                $ExcelTipsTricks_playlist="Excel Tips & Tricks (Hindi)";   
+        @endphp
+
 <div class="top-grids">
         <div class="recommended-info">
             @if (Session::get('post-contact-us'))
@@ -164,6 +173,8 @@
         </div>
     </div>    
 
+    @include('keyword_config');	  
+
     <script>
         $(document).ready(function(){
             //Ajax token setup for the post requests. 
@@ -179,7 +190,10 @@
             });    
 
             // Excel Vba toturials
-             $.post("{{URL::route('getExcelVbaToturials') }}",function(data){
+            var VbaBeginnerTutorial_playlist="{{$VbaBeginnerTutorial_playlist}}";
+             $.post("{{URL::route('getExcelVbaToturials') }}",{
+                playlist_name:VbaBeginnerTutorial_playlist,
+                         },function(data){
                 $('#excel_vba_toturials').html(data.html);     
              });
 

@@ -35,7 +35,7 @@
                             @for ($indx = $i; $indx < $i+4; $indx++)    
                                 <div class="col-md-3 resent-grid recommended-grid slider-first">
                                     <div class="resent-grid-img recommended-grid-img">
-                                        <a href="{{route('single',['video_id'=>$excelVBATutorials[$indx]->video_id])}}"><img src="images/{{$excelVBATutorials[$indx]->thumbnail}}" alt="" /></a>
+                                        <a href=" {{$excelVBATutorials[$indx]->page_url}}"><img src="images/{{$excelVBATutorials[$indx]->thumbnail}}" alt="" /></a>
                                         <div class="time small-time slider-time">
                                             <p>{{$excelVBATutorials[$indx]->duration}}</p>
                                         </div>
@@ -44,10 +44,10 @@
                                         </div>
                                     </div>
                                     <div class="resent-grid-info recommended-grid-info">
-                                    <h5><a href="{{route('single',['video_id'=>$excelVBATutorials[$indx]->video_id])}}" class="title">{{$excelVBATutorials[$indx]->video_title}}</a></h5>
+                                    <h5><a href="{{$excelVBATutorials[$indx]->page_url}}" class="title">{{$excelVBATutorials[$indx]->video_title}}</a></h5>
                                         <div class="slid-bottom-grids">
                                             <div class="slid-bottom-grid">
-                                                <p class="author author-info"><a href="#" class="author">Automation Fever</a></p>
+                                                <p class="author author-info"><a href='#' class="author">Automation Fever</a></p>
                                             </div>
                                             <div class="slid-bottom-grid slid-bottom-right">
                                                 <p class="views views-info"> {{ number_format($excelVBATutorials[$indx]->view_count,0,'.',',')}} views</p>
