@@ -58,6 +58,7 @@ if(typeof _bsa !== 'undefined' && _bsa) {
     @include('master-layout.top-navbar')
 
     <div class="col-sm-12 col-md-12 main">
+       @yield('slider')
                 <div class="main-grids">
                     @yield('content')
                 </div>
