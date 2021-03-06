@@ -32,10 +32,183 @@ class HomeController extends Controller
     }
 
 
+    public function LoadBasicVbaRecentVideos(Request $request){
+      $basic_vba_videos=Videos_lists::select(
+                                      'video_id',
+                                      'duration',
+                                      'video_title',
+                                      'published_datetime',
+                                      'thumbnail',
+                                      'course_name',
+                                      'view_count',
+                                      'page_url',
+                                    )
+                                   ->where('course_name','basic-vba')
+                                   ->limit(12)
+                                   ->orderBy('published_datetime','desc')
+                                   ->get();
+
+      $returnHTML=view('ajax-recent-basic-vba-videos',
+                                  [
+                                    'basic_vba_videos' => $basic_vba_videos,
+                                 ])->render();                                     
+                                   
+      return response()->json(array('success'=>true,'html'=>$returnHTML));
+    }
+
+    public function LoadAdvancedVbaRecentVideos(Request $request){
+      $advanced_vba_videos=Videos_lists::select(
+                                      'video_id',
+                                      'duration',
+                                      'video_title',
+                                      'published_datetime',
+                                      'thumbnail',
+                                      'course_name',
+                                      'view_count',
+                                      'page_url',
+                                    )
+                                   ->where('course_name','advanced-vba')
+                                   ->limit(12)
+                                   ->orderBy('published_datetime','desc')
+                                   ->get();
+
+      $returnHTML=view('ajax-recent-advanced-vba-videos',
+                                  [
+                                    'advanced_vba_videos' => $advanced_vba_videos,
+                                 ])->render();                                     
+                                   
+      return response()->json(array('success'=>true,'html'=>$returnHTML));
+    }
+
+
+    public function LoadVbaProjectsRecentVideos(Request $request){
+      $vba_projects_videos=Videos_lists::select(
+                                      'video_id',
+                                      'duration',
+                                      'video_title',
+                                      'published_datetime',
+                                      'thumbnail',
+                                      'course_name',
+                                      'view_count',
+                                      'page_url',
+                                    )
+                                   ->where('course_name','vba-projects')
+                                   ->limit(12)
+                                   ->orderBy('published_datetime','desc')
+                                   ->get();
+
+      $returnHTML=view('ajax-recent-vba-projects-videos',
+                                  [
+                                    'vba_projects_videos' => $vba_projects_videos,
+                                 ])->render();                                     
+                                   
+      return response()->json(array('success'=>true,'html'=>$returnHTML));
+    }
+
+    public function LoadExcelTipsAndTricksRecentVideos(Request $request){
+      $excel_tips_and_tricks_videos=Videos_lists::select(
+                                      'video_id',
+                                      'duration',
+                                      'video_title',
+                                      'published_datetime',
+                                      'thumbnail',
+                                      'course_name',
+                                      'view_count',
+                                      'page_url',
+                                    )
+                                   ->where('course_name','excel-tips-and-tricks')
+                                   ->limit(12)
+                                   ->orderBy('published_datetime','desc')
+                                   ->get();
+
+      $returnHTML=view('ajax-recent-excel-tips-and-tricks-videos',
+                                  [
+                                    'excel_tips_and_tricks_videos' => $excel_tips_and_tricks_videos,
+                                 ])->render();                                     
+                                   
+      return response()->json(array('success'=>true,'html'=>$returnHTML));
+    }
+
+
     public function RecentVideos(){
-        return view('home');
-      }
+       $basicvba_videoCount=Videos_lists::where('course_name','basic-vba')
+                                            ->count();
+
+       $advanced_videoCount=Videos_lists::where('course_name','advanced-vba')
+                                           ->count(); 
+
+        $exceltipandtricks_videoCount=Videos_lists::where('course_name','excel-tips-and-tricks')
+                                           ->count();                                           
+                                           
+
+        $uipath_videoCount=Videos_lists::where('course_name','uipath')
+                                           ->count();                                                                                      
+
+        return view('home', [
+                              'basicvba_videoCount' => $basicvba_videoCount,
+                              'advanced_videoCount' => $advanced_videoCount,
+                              'exceltipandtricks_videoCount' => $exceltipandtricks_videoCount,
+                              'uipath_videoCount'   => $uipath_videoCount,
+                      ]);
+      } //RecentVideos
+
+    //Fetch All videos titles from table to be display on playlist
+      protected function GetBasicVbaTutorialsList(Request $request){
+          $basic_vba_list=Videos_lists::select(
+                                                'video_id',
+                                                'video_title',
+                                                'page_url',
+                                              )
+                                         ->where('course_name','basic-vba')  
+                                         ->orderBy('course_sortBy')   
+                                        ->get();                                    
+        
+          $returnHTML=view('ajax-get-basic-vba-list',
+                                      [
+                                        'basic_vba_list' => $basic_vba_list,
+                                     ])->render();                                     
+                                       
+          return response()->json(array('success'=>true,'html'=>$returnHTML));
+      } //end of GetBasicVbaTutorialsList
+
+
+
+      protected function GetAdvancedVbaTutorialsList(Request $request){
+            $advanced_vba_list=Videos_lists::select(
+                                                  'video_id',
+                                                  'video_title',
+                                                  'page_url',
+                                                )
+                                           ->where('course_name','advanced-vba')     
+                                           ->orderBy('course_sortBy')                                           
+                                          ->get();                                    
+          
+            $returnHTML=view('ajax-get-advanced-vba-list',
+                                        [
+                                          'advanced_vba_list' => $advanced_vba_list,
+                                       ])->render();                                     
+                                         
+            return response()->json(array('success'=>true,'html'=>$returnHTML));
+        } //end of GetAdvancedVbaTutorialsList
   
+
+        protected function GetExcelTipsAndTricksTutorialsList(Request $request){
+          $excel_tips_and_tricks_list=Videos_lists::select(
+                                                'video_id',
+                                                'video_title',
+                                                'page_url',
+                                              )
+                                         ->where('course_name','excel-tips-and-tricks')     
+                                        ->get();                                    
+        
+          $returnHTML=view('ajax-get-excel-tips-and-tricks-list',
+                                      [
+                                        'excel_tips_and_tricks_list' => $excel_tips_and_tricks_list,
+                                     ])->render();                                     
+                                       
+          return response()->json(array('success'=>true,'html'=>$returnHTML));
+      } //end of GetExcelTipsAndTricksTutorialsList
+
       public function GetVideoDetails(Request $request){
           $video_id=$request->video_id;
           $part='contentDetails,statistics';

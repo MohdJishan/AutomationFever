@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +16,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'App\Http\Controllers\HomeController@RecentVideos')->name('home');
+
+Route::post('basic-vba-recent-videos',[HomeController::class,'LoadBasicVbaRecentVideos'])->name('loadBasicVbaVideos');
+Route::post('advanced-vba-recent-videos',[HomeController::class,'LoadAdvancedVbaRecentVideos'])->name('loadAdvancedVbaVideos');
+Route::post('vba-projects-recent-videos',[HomeController::class,'LoadVbaProjectsRecentVideos'])->name('loadVbaProjectsVideos');
+Route::post('excel-tips-and-tricks-recent-videos',[HomeController::class,'LoadExcelTipsAndTricksRecentVideos'])->name('loadExcelTipsAndTricksVideos');
+
+Route::post('basic-vba-tutorials-list',[HomeController::class,'GetBasicVbaTutorialsList'])->name('basic-vba-tutorials-list');
+Route::post('advanced-vba-tutorials-list',[HomeController::class,'GetAdvancedVbaTutorialsList'])->name('advanced-vba-tutorials-list');
+Route::post('excel-tips-and-tricks-tutorials-list',[HomeController::class,'GetExcelTipsAndTricksTutorialsList'])->name('excel-tips-and-tricks-tutorials-list');
+
 
 Route::post('/getRecentVideos',array('uses'=>'App\Http\Controllers\HomeController@GetRecentVideos','as'=>'getRecentVideos'));
 Route::post('/getExcelVbaToturials',array('uses'=>'App\Http\Controllers\HomeController@GetExcelVbaToturials','as'=>'getExcelVbaToturials'));
@@ -472,27 +482,27 @@ Route::get('/basic_vba/weekday-weekdayname-date-functions',
 ->name('/basic_vba/weekday-weekdayname-date-functions');
 
 Route::get('/advanced_vba/send-outlook-mail',
-'App\Http\Controllers\AdvancedVbaController@LoadSendOutlookMail')
+'/@LoadSendOutlookMail')
 ->name('/advanced_vba/send-outlook-mail');
 
 Route::get('/advanced_vba/format-email-body-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadFormatEmailBodyOutlookAutomation')
+'/@LoadFormatEmailBodyOutlookAutomation')
 ->name('/advanced_vba/format-email-body-outlook-automation');
 
 Route::get('/advanced_vba/add-signature-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadAddSignatureOutlookAutomation')
+'/@LoadAddSignatureOutlookAutomation')
 ->name('/advanced_vba/add-signature-outlook-automation');
 
 Route::get('/advanced_vba/add-attachment-in-mail-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadAddAttachmentInMailOutlookAutomation')
+'/@LoadAddAttachmentInMailOutlookAutomation')
 ->name('/advanced_vba/add-attachment-in-mail-outlook-automation');
 
 Route::get('/advanced_vba/insert-image-in-mail-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadInsertImageInMailOutlookAutomation')
+'/@LoadInsertImageInMailOutlookAutomation')
 ->name('/advanced_vba/insert-image-in-mail-outlook-automation');
 
 Route::get('/advanced_vba/add-list-on-mail-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadAddListOnMailOutlookAutomation')
+'/@LoadAddListOnMailOutlookAutomation')
 ->name('/advanced_vba/add-list-on-mail-outlook-automation');
 
 Route::get('/excel_tips_and_tricks/copy-from-clipboard-excel-tips-tricks',
@@ -504,11 +514,11 @@ Route::get('/excel_tips_and_tricks/add-bullet-point-excel-tips-tricks',
 ->name('/excel_tips_and_tricks/add-bullet-point-excel-tips-tricks');
 
 Route::get('/advanced_vba/add-unordered-list-on-mail-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadAddUnorderedListOnMailOutlookAutomation')
+'App\Http\Controllers/AdvancedVbaController@LoadAddUnorderedListOnMailOutlookAutomation')
 ->name('/advanced_vba/add-unordered-list-on-mail-outlook-automation');
 
 Route::get('/advanced_vba/using-rtf-property-outlook-automation',
-'App\Http\Controllers\AdvancedVbaController@LoadUsingRtfPropertyOutlookAutomation')
+'App\Http\Controllers/AdvancedVbaController@LoadUsingRtfPropertyOutlookAutomation')
 ->name('/advanced_vba/using-rtf-property-outlook-automation');
 
 
