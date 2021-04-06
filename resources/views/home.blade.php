@@ -1102,7 +1102,7 @@
         }); //$.ajaxSetup({
 
         //Loading Recent Basic VBA Videos using AJAX Request
-        $.post("{{ URL::route('loadBasicVbaVideos') }}", {}, function(data) {
+        $.post("{{ URL::route('basic-vba-recent-videos') }}", {}, function(data) {
             $("ul[data-series-id='basic-vba-series']").html(data.html);
         });
 

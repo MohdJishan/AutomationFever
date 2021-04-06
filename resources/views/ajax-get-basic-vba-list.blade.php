@@ -2,7 +2,7 @@
     <dl> 
         <i class="fa fa-play-circle"></i>
          <span style="padding: 0px 0px 0px 10px !important;">
-            <a href="{{$item->video_title}}"
+            <a href="{{$item->page_url}}"
                 style="color:#2D545E; text-decoration:none;">
                 {{$item->video_title}}
             </a>

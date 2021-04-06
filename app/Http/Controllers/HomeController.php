@@ -51,7 +51,9 @@ class HomeController extends Controller
       $returnHTML=view('ajax-recent-basic-vba-videos',
                                   [
                                     'basic_vba_videos' => $basic_vba_videos,
-                                 ])->render();                                     
+                                 ])->render();       
+                                 
+                                //  $returnHTML='abv';;
                                    
       return response()->json(array('success'=>true,'html'=>$returnHTML));
     }
@@ -101,7 +103,7 @@ class HomeController extends Controller
                                   [
                                     'vba_projects_videos' => $vba_projects_videos,
                                  ])->render();                                     
-                                   
+                                 
       return response()->json(array('success'=>true,'html'=>$returnHTML));
     }
 

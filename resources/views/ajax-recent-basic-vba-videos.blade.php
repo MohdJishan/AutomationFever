@@ -33,7 +33,7 @@ $index = 1;
 
         <div class="col-md-3 resent-grid recommended-grid slider-first">
             <div class="resent-grid-img recommended-grid-img">
-                <a href="{{route($item->page_url)}}">
+                <a href="">
                     <img src="images/{{ $item->thumbnail }}" alt="" />
                 </a>
                 <div class="time small-time slider-time">

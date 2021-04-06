@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BasicVbaController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,7 +18,7 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', 'App\Http\Controllers\HomeController@RecentVideos')->name('home');
 
-Route::post('basic-vba-recent-videos',[HomeController::class,'LoadBasicVbaRecentVideos'])->name('loadBasicVbaVideos');
+Route::post('basic-vba-recent-videos',[HomeController::class,'LoadBasicVbaRecentVideos'])->name('basic-vba-recent-videos');
 Route::post('advanced-vba-recent-videos',[HomeController::class,'LoadAdvancedVbaRecentVideos'])->name('loadAdvancedVbaVideos');
 Route::post('vba-projects-recent-videos',[HomeController::class,'LoadVbaProjectsRecentVideos'])->name('loadVbaProjectsVideos');
 Route::post('excel-tips-and-tricks-recent-videos',[HomeController::class,'LoadExcelTipsAndTricksRecentVideos'])->name('loadExcelTipsAndTricksVideos');
@@ -97,388 +98,388 @@ Auth::routes();
 
 //Baisc VBA Routes
 
-Route::get('/basic_vba/why-should-learn-vba',
-'App\Http\Controllers\BasicVbaController@LoadWhyShouldLearnVba')
-->name('/basic_vba/why-should-learn-vba');
+Route::get('vba/basic-vba/why-should-learn-vba',
+[BasicVbaController::class,'LoadWhyShouldLearnVba'])
+->name('vba/basic-vba/why-should-learn-vba');
 
 Route::get('/basic_vba/vba-introduction',
-'App\Http\Controllers\BasicVbaController@LoadVbaIntroduction')
+[BasicVbaController::class,'LoadVbaIntroduction'])
 ->name('/basic_vba/vba-introduction');
 
 Route::get('/basic_vba/how-to-enable-developer-tab',
-'App\Http\Controllers\BasicVbaController@LoadHowToEnableDeveloperTab')
+[BasicVbaController::class,'LoadHowToEnableDeveloperTab'])
 ->name('/basic_vba/how-to-enable-developer-tab');
 
 Route::get('/basic_vba/message-box',
-'App\Http\Controllers\BasicVbaController@LoadMessageBox')
+[BasicVbaController::class,'LoadMessageBox'])
 ->name('/basic_vba/message-box');
 
 Route::get('/basic_vba/adding-new-sheets',
-'App\Http\Controllers\BasicVbaController@LoadAddingNewSheets')
+[BasicVbaController::class,'LoadAddingNewSheets'])
 ->name('/basic_vba/adding-new-sheets');
 
 Route::get('/basic_vba/deleting-sheets',
-'App\Http\Controllers\BasicVbaController@LoadDeletingSheets')
+[BasicVbaController::class,'LoadDeletingSheets'])
 ->name('/basic_vba/deleting-sheets');
 
 Route::get('/basic_vba/change-sheet-tab-color',
-'App\Http\Controllers\BasicVbaController@LoadChangeSheetTabColor')
+[BasicVbaController::class,'LoadChangeSheetTabColor'])
 ->name('/basic_vba/change-sheet-tab-color');
 
 Route::get('/basic_vba/hide-unhide-sheets',
-'App\Http\Controllers\BasicVbaController@LoadHideUnhideSheets')
+[BasicVbaController::class,'LoadHideUnhideSheets'])
 ->name('/basic_vba/hide-unhide-sheets');
 
 Route::get('/basic_vba/grouping-sheets',
-'App\Http\Controllers\BasicVbaController@LoadGroupingSheets')
+[BasicVbaController::class,'LoadGroupingSheets'])
 ->name('/basic_vba/grouping-sheets');
 
 Route::get('/basic_vba/copy-and-move-sheet',
-'App\Http\Controllers\BasicVbaController@LoadCopyAndMoveSheet')
+[BasicVbaController::class,'LoadCopyAndMoveSheet'])
 ->name('/basic_vba/copy-and-move-sheet');
 
 Route::get('/basic_vba/protect-and-unprotect-sheet',
-'App\Http\Controllers\BasicVbaController@LoadProtectAndUnprotectSheet')
+[BasicVbaController::class,'LoadProtectAndUnprotectSheet'])
 ->name('/basic_vba/protect-and-unprotect-sheet');
 
 Route::get('/basic_vba/add-background-image-in-sheet',
-'App\Http\Controllers\BasicVbaController@LoadAddBackgroundImageInSheet')
+[BasicVbaController::class,'LoadAddBackgroundImageInSheet'])
 ->name('/basic_vba/add-background-image-in-sheet');
 
 Route::get('/basic_vba/working-with-workbook',
-'App\Http\Controllers\BasicVbaController@LoadWorkingWithWorkbook')
+[BasicVbaController::class,'LoadWorkingWithWorkbook'])
 ->name('/basic_vba/working-with-workbook');
 
 Route::get('/basic_vba/subroutine',
-'App\Http\Controllers\BasicVbaController@LoadSubroutine')
+[BasicVbaController::class,'LoadSubroutine'])
 ->name('/basic_vba/subroutine');
 
 Route::get('/basic_vba/add-50-sheets-and-change-tab-color-of-each-sheets',
-'App\Http\Controllers\BasicVbaController@LoadAdd50SheetsAndChangeTabColorOfEachSheets')
+[BasicVbaController::class,'LoadAdd50SheetsAndChangeTabColorOfEachSheets'])
 ->name('/basic_vba/add-50-sheets-and-change-tab-color-of-each-sheets');
 
 Route::get('/basic_vba/object-hierarchy',
-'App\Http\Controllers\BasicVbaController@LoadObjectHierarchy')
+[BasicVbaController::class,'LoadObjectHierarchy'])
 ->name('/basic_vba/object-hierarchy');
 
 Route::get('/basic_vba/range',
-'App\Http\Controllers\BasicVbaController@LoadRange')
+[BasicVbaController::class,'LoadRange'])
 ->name('/basic_vba/range');
 
 Route::get('/basic_vba/variables',
-'App\Http\Controllers\BasicVbaController@LoadVariables')
+[BasicVbaController::class,'LoadVariables'])
 ->name('/basic_vba/variables');
 
 Route::get('/basic_vba/if-else-statements',
-'App\Http\Controllers\BasicVbaController@LoadIfElseStatements')
+[BasicVbaController::class,'LoadIfElseStatements'])
 ->name('/basic_vba/if-else-statements');
 
 Route::get('/basic_vba/select-case-statement',
-'App\Http\Controllers\BasicVbaController@LoadSelectCaseStatement')
+[BasicVbaController::class,'LoadSelectCaseStatement'])
 ->name('/basic_vba/select-case-statement');
 
 Route::get('/basic_vba/for-loop',
-'App\Http\Controllers\BasicVbaController@LoadForLoop')
+[BasicVbaController::class,'LoadForLoop'])
 ->name('/basic_vba/for-loop');
 
 Route::get('/basic_vba/for-loop-examples',
-'App\Http\Controllers\BasicVbaController@LoadForLoopExamples')
+[BasicVbaController::class,'LoadForLoopExamples'])
 ->name('/basic_vba/for-loop-examples');
 
 Route::get('/basic_vba/read-data-from-text-file',
-'App\Http\Controllers\BasicVbaController@LoadReadDataFromTextFile')
+[BasicVbaController::class,'LoadReadDataFromTextFile'])
 ->name('/basic_vba/read-data-from-text-file');
 
 Route::get('/basic_vba/send-excel-file-in-mail',
-'App\Http\Controllers\BasicVbaController@LoadSendExcelFileInMail')
+[BasicVbaController::class,'LoadSendExcelFileInMail'])
 ->name('/basic_vba/send-excel-file-in-mail');
 
 Route::get('/basic_vba/do-while-loop',
-'App\Http\Controllers\BasicVbaController@LoadDoWhileLoop')
+[BasicVbaController::class,'LoadDoWhileLoop'])
 ->name('/basic_vba/do-while-loop');
 
 Route::get('/basic_vba/do-while-loop-examples',
-'App\Http\Controllers\BasicVbaController@LoadDoWhileLoopExamples')
+[BasicVbaController::class,'LoadDoWhileLoopExamples'])
 ->name('/basic_vba/do-while-loop-examples');
 
 Route::get('/basic_vba/for-each-loop',
-'App\Http\Controllers\BasicVbaController@LoadForEachLoop')
+[BasicVbaController::class,'LoadForEachLoop'])
 ->name('/basic_vba/for-each-loop');
 
 Route::get('/basic_vba/hide-unhide-gridlines',
-'App\Http\Controllers\BasicVbaController@LoadHideUnhideGridlines')
+[BasicVbaController::class,'LoadHideUnhideGridlines'])
 ->name('/basic_vba/hide-unhide-gridlines');
 
 Route::get('/basic_vba/merge-unmerge-cells',
-'App\Http\Controllers\BasicVbaController@LoadMergeUnmergeCells')
+[BasicVbaController::class,'LoadMergeUnmergeCells'])
 ->name('/basic_vba/merge-unmerge-cells');
 
 Route::get('/basic_vba/auto-format',
-'App\Http\Controllers\BasicVbaController@LoadAutoFormat')
+[BasicVbaController::class,'LoadAutoFormat'])
 ->name('/basic_vba/auto-format');
 
 Route::get('/basic_vba/remove-duplicates',
-'App\Http\Controllers\BasicVbaController@LoadRemoveDuplicates')
+[BasicVbaController::class,'LoadRemoveDuplicates'])
 ->name('/basic_vba/remove-duplicates');
 
 Route::get('/basic_vba/insert-rows',
-'App\Http\Controllers\BasicVbaController@LoadInsertRows')
+[BasicVbaController::class,'LoadInsertRows'])
 ->name('/basic_vba/insert-rows');
 
 Route::get('/basic_vba/insert-alternate-rows',
-'App\Http\Controllers\BasicVbaController@LoadInsertAlternateRows')
+[BasicVbaController::class,'LoadInsertAlternateRows'])
 ->name('/basic_vba/insert-alternate-rows');
 
 Route::get('/basic_vba/delete-rows',
-'App\Http\Controllers\BasicVbaController@LoadDeleteRows')
+[BasicVbaController::class,'LoadDeleteRows'])
 ->name('/basic_vba/delete-rows');
 
 Route::get('/basic_vba/insert-new-column',
-'App\Http\Controllers\BasicVbaController@LoadInsertNewColumn')
+[BasicVbaController::class,'LoadInsertNewColumn'])
 ->name('/basic_vba/insert-new-column');
 
 Route::get('/basic_vba/delete-column',
-'App\Http\Controllers\BasicVbaController@LoadDeleteColumn')
+[BasicVbaController::class,'LoadDeleteColumn'])
 ->name('/basic_vba/delete-column');
 
 Route::get('/basic_vba/vba-code-to-apply-text-to-columns-fixed-width',
-'App\Http\Controllers\BasicVbaController@LoadVbaCodeToApplyTextToColumnsFixedWidth')
+[BasicVbaController::class,'LoadVbaCodeToApplyTextToColumnsFixedWidth'])
 ->name('/basic_vba/vba-code-to-apply-text-to-columns-fixed-width');
 
 Route::get('/basic_vba/delimited-text-to-columns',
-'App\Http\Controllers\BasicVbaController@LoadDelimitedTextToColumns')
+[BasicVbaController::class,'LoadDelimitedTextToColumns'])
 ->name('/basic_vba/delimited-text-to-columns');
 
 Route::get('/basic_vba/advanced-text-to-columns-tricks',
-'App\Http\Controllers\BasicVbaController@LoadAdvancedTextToColumnsTricks')
+[BasicVbaController::class,'LoadAdvancedTextToColumnsTricks'])
 ->name('/basic_vba/advanced-text-to-columns-tricks');
 
 Route::get('/basic_vba/enable-disable-formula-bar',
-'App\Http\Controllers\BasicVbaController@LoadEnableDisableFormulaBar')
+[BasicVbaController::class,'LoadEnableDisableFormulaBar'])
 ->name('/basic_vba/enable-disable-formula-bar');
 
 Route::get('/basic_vba/arrays',
-'App\Http\Controllers\BasicVbaController@LoadArrays')
+[BasicVbaController::class,'LoadArrays'])
 ->name('/basic_vba/arrays');
 
 Route::get('/basic_vba/hide-show-row-column-heading',
-'App\Http\Controllers\BasicVbaController@LoadHideShowRowColumnHeading')
+[BasicVbaController::class,'LoadHideShowRowColumnHeading'])
 ->name('/basic_vba/hide-show-row-column-heading');
 
 Route::get('/basic_vba/dynamic-arrays',
-'App\Http\Controllers\BasicVbaController@LoadDynamicArrays')
+[BasicVbaController::class,'LoadDynamicArrays'])
 ->name('/basic_vba/dynamic-arrays');
 
 Route::get('/basic_vba/autofit-columns-width',
-'App\Http\Controllers\BasicVbaController@LoadAutofitColumnsWidth')
+[BasicVbaController::class,'LoadAutofitColumnsWidth'])
 ->name('/basic_vba/autofit-columns-width');
 
 Route::get('/basic_vba/with-statement',
-'App\Http\Controllers\BasicVbaController@LoadWithStatement')
+[BasicVbaController::class,'LoadWithStatement'])
 ->name('/basic_vba/with-statement');
 
 Route::get('/basic_vba/custom-list',
-'App\Http\Controllers\BasicVbaController@LoadCustomList')
+[BasicVbaController::class,'LoadCustomList'])
 ->name('/basic_vba/custom-list');
 
 Route::get('/basic_vba/status-bar',
-'App\Http\Controllers\BasicVbaController@LoadStatusBar')
+[BasicVbaController::class,'LoadStatusBar'])
 ->name('/basic_vba/status-bar');
 
 Route::get('/basic_vba/finding-last-row-or-last-column',
-'App\Http\Controllers\BasicVbaController@LoadFindingLastRowOrLastColumn')
+[BasicVbaController::class,'LoadFindingLastRowOrLastColumn'])
 ->name('/basic_vba/finding-last-row-or-last-column');
 
 Route::get('/basic_vba/hide-scroll-bar',
-'App\Http\Controllers\BasicVbaController@LoadHideScrollBar')
+[BasicVbaController::class,'LoadHideScrollBar'])
 ->name('/basic_vba/hide-scroll-bar');
 
 Route::get('/basic_vba/change-row-column-width-height',
-'App\Http\Controllers\BasicVbaController@LoadChangeRowColumnWidthHeight')
+[BasicVbaController::class,'LoadChangeRowColumnWidthHeight'])
 ->name('/basic_vba/change-row-column-width-height');
 
 Route::get('/basic_vba/change-text-orientation',
-'App\Http\Controllers\BasicVbaController@LoadChangeTextOrientation')
+[BasicVbaController::class,'LoadChangeTextOrientation'])
 ->name('/basic_vba/change-text-orientation');
 
 Route::get('/basic_vba/insert-delete-edit-read-comments',
-'App\Http\Controllers\BasicVbaController@LoadInsertDeleteEditReadComments')
+[BasicVbaController::class,'LoadInsertDeleteEditReadComments'])
 ->name('/basic_vba/insert-delete-edit-read-comments');
 
 Route::get('/basic_vba/wrap-text',
-'App\Http\Controllers\BasicVbaController@LoadWrapText')
+[BasicVbaController::class,'LoadWrapText'])
 ->name('/basic_vba/wrap-text');
 
 Route::get('/basic_vba/fill-down-option',
-'App\Http\Controllers\BasicVbaController@LoadFillDownOption')
+[BasicVbaController::class,'LoadFillDownOption'])
 ->name('/basic_vba/fill-down-option');
 
 Route::get('/basic_vba/clear-cells',
-'App\Http\Controllers\BasicVbaController@LoadClearCells')
+[BasicVbaController::class,'LoadClearCells'])
 ->name('/basic_vba/clear-cells');
 
 Route::get('/basic_vba/hide-unhide-sheet-tab-bar',
-'App\Http\Controllers\BasicVbaController@LoadHideUnhideSheetTabBar')
+[BasicVbaController::class,'LoadHideUnhideSheetTabBar'])
 ->name('/basic_vba/hide-unhide-sheet-tab-bar');
 
 Route::get('/basic_vba/excel-vba-activate-full-screen-mode',
-'App\Http\Controllers\BasicVbaController@LoadExcelVbaActivateFullScreenMode')
+[BasicVbaController::class,'LoadExcelVbaActivateFullScreenMode'])
 ->name('/basic_vba/excel-vba-activate-full-screen-mode');
 
 Route::get('/basic_vba/immediate-window',
-'App\Http\Controllers\BasicVbaController@LoadImmediateWindow')
+[BasicVbaController::class,'LoadImmediateWindow'])
 ->name('/basic_vba/immediate-window');
 
 Route::get('/basic_vba/excel-vba-applying-borders',
-'App\Http\Controllers\BasicVbaController@LoadExcelVbaApplyingBorders')
+[BasicVbaController::class,'LoadExcelVbaApplyingBorders'])
 ->name('/basic_vba/excel-vba-applying-borders');
 
 Route::get('/basic_vba/adding-and-removing-hyperlinks',
-'App\Http\Controllers\BasicVbaController@LoadAddingAndRemovingHyperlinks')
+[BasicVbaController::class,'LoadAddingAndRemovingHyperlinks'])
 ->name('/basic_vba/adding-and-removing-hyperlinks');
 
 Route::get('/basic_vba/hyperlinks-add-text-to-display-add-screen-tip',
-'App\Http\Controllers\BasicVbaController@LoadHyperlinksAddTextToDisplayAddScreenTip')
+[BasicVbaController::class,'LoadHyperlinksAddTextToDisplayAddScreenTip'])
 ->name('/basic_vba/hyperlinks-add-text-to-display-add-screen-tip');
 
 Route::get('/basic_vba/hyperlinks-open-folder-file-jump-to-a-cell',
-'App\Http\Controllers\BasicVbaController@LoadHyperlinksOpenFolderFileJumpToACell')
+[BasicVbaController::class,'LoadHyperlinksOpenFolderFileJumpToACell'])
 ->name('/basic_vba/hyperlinks-open-folder-file-jump-to-a-cell');
 
 Route::get('/basic_vba/follow-hyperlinks',
-'App\Http\Controllers\BasicVbaController@LoadFollowHyperlinks')
+[BasicVbaController::class,'LoadFollowHyperlinks'])
 ->name('/basic_vba/follow-hyperlinks');
 
 Route::get('/basic_vba/excel-vba-display-hyperlinks-add-hyperlinks-to-a-shape',
-'App\Http\Controllers\BasicVbaController@LoadExcelVbaDisplayHyperlinksAddHyperlinksToAShape')
+[BasicVbaController::class,'LoadExcelVbaDisplayHyperlinksAddHyperlinksToAShape'])
 ->name('/basic_vba/excel-vba-display-hyperlinks-add-hyperlinks-to-a-shape');
 
 Route::get('/basic_vba/using-freeze-panes',
-'App\Http\Controllers\BasicVbaController@LoadUsingFreezePanes')
+[BasicVbaController::class,'LoadUsingFreezePanes'])
 ->name('/basic_vba/using-freeze-panes');
 
 Route::get('/basic_vba/basic-sorting',
-'App\Http\Controllers\BasicVbaController@LoadBasicSorting')
+[BasicVbaController::class,'LoadBasicSorting'])
 ->name('/basic_vba/basic-sorting');
 
 Route::get('/basic_vba/multi-level-sorting',
-'App\Http\Controllers\BasicVbaController@LoadMultiLevelSorting')
+[BasicVbaController::class,'LoadMultiLevelSorting'])
 ->name('/basic_vba/multi-level-sorting');
 
 Route::get('/basic_vba/sort-by-font-and-cell-color',
-'App\Http\Controllers\BasicVbaController@LoadSortByFontAndCellColor')
+[BasicVbaController::class,'LoadSortByFontAndCellColor'])
 ->name('/basic_vba/sort-by-font-and-cell-color');
 
 Route::get('/basic_vba/horizontal-sorting',
-'App\Http\Controllers\BasicVbaController@LoadHorizontalSorting')
+[BasicVbaController::class,'LoadHorizontalSorting'])
 ->name('/basic_vba/horizontal-sorting');
 
 Route::get('/basic_vba/auto-filter',
-'App\Http\Controllers\BasicVbaController@LoadAutoFilter')
+[BasicVbaController::class,'LoadAutoFilter'])
 ->name('/basic_vba/auto-filter');
 
 Route::get('/basic_vba/auto-filter-using-wildcard',
-'App\Http\Controllers\BasicVbaController@LoadAutoFilterUsingWildcard')
+[BasicVbaController::class,'LoadAutoFilterUsingWildcard'])
 ->name('/basic_vba/auto-filter-using-wildcard');
 
 Route::get('/basic_vba/auto-filter-top-bottom-records',
-'App\Http\Controllers\BasicVbaController@LoadAutoFilterTopBottomRecords')
+[BasicVbaController::class,'LoadAutoFilterTopBottomRecords'])
 ->name('/basic_vba/auto-filter-top-bottom-records');
 
 Route::get('/basic_vba/auto-filter-by-dates',
-'App\Http\Controllers\BasicVbaController@LoadAutoFilterByDates')
+[BasicVbaController::class,'LoadAutoFilterByDates'])
 ->name('/basic_vba/auto-filter-by-dates');
 
 Route::get('/basic_vba/auto-filter-by-color',
-'App\Http\Controllers\BasicVbaController@LoadAutoFilterByColor')
+[BasicVbaController::class,'LoadAutoFilterByColor'])
 ->name('/basic_vba/auto-filter-by-color');
 
 Route::get('/basic_vba/filter-unique-records-using-advanced-filter',
-'App\Http\Controllers\BasicVbaController@LoadFilterUniqueRecordsUsingAdvancedFilter')
+[BasicVbaController::class,'LoadFilterUniqueRecordsUsingAdvancedFilter'])
 ->name('/basic_vba/filter-unique-records-using-advanced-filter');
 
 Route::get('/basic_vba/advanced-filter',
-'App\Http\Controllers\BasicVbaController@LoadAdvancedFilter')
+[BasicVbaController::class,'LoadAdvancedFilter'])
 ->name('/basic_vba/advanced-filter');
 
 Route::get('/basic_vba/advanced-filter-with-multiple-criteria',
-'App\Http\Controllers\BasicVbaController@LoadAdvancedFilterWithMultipleCriteria')
+[BasicVbaController::class,'LoadAdvancedFilterWithMultipleCriteria'])
 ->name('/basic_vba/advanced-filter-with-multiple-criteria');
 
 Route::get('/basic_vba/string-functions',
-'App\Http\Controllers\BasicVbaController@LoadStringFunctions')
+[BasicVbaController::class,'LoadStringFunctions'])
 ->name('/basic_vba/string-functions');
 
 Route::get('/basic_vba/left-right-mid-functions',
-'App\Http\Controllers\BasicVbaController@LoadLeftRightMidFunctions')
+[BasicVbaController::class,'LoadLeftRightMidFunctions'])
 ->name('/basic_vba/left-right-mid-functions');
 
 Route::get('/basic_vba/extract-numbers-text-special-chars-from-a-string',
-'App\Http\Controllers\BasicVbaController@LoadExtractNumbersTextSpecialCharsFromAString')
+[BasicVbaController::class,'LoadExtractNumbersTextSpecialCharsFromAString'])
 ->name('/basic_vba/extract-numbers-text-special-chars-from-a-string');
 
 Route::get('/basic_vba/asc-chr-trim-string-functions',
-'App\Http\Controllers\BasicVbaController@LoadAscChrTrimStringFunctions')
+[BasicVbaController::class,'LoadAscChrTrimStringFunctions'])
 ->name('/basic_vba/asc-chr-trim-string-functions');
 
 Route::get('/basic_vba/searching-with-in-a-string',
-'App\Http\Controllers\BasicVbaController@LoadSearchingWithInAString')
+[BasicVbaController::class,'LoadSearchingWithInAString'])
 ->name('/basic_vba/searching-with-in-a-string');
 
 Route::get('/basic_vba/replace-a-part-of-string',
-'App\Http\Controllers\BasicVbaController@LoadReplaceAPartOfString')
+[BasicVbaController::class,'LoadReplaceAPartOfString'])
 ->name('/basic_vba/replace-a-part-of-string');
 
 Route::get('/vba_projects/upload-insert-images',
-'App\Http\Controllers\VbaProjectsController@LoadVba_ProjectsUploadInsertImages')
+[BasicVbaController::class,'LoadVba_ProjectsUploadInsertImages'])
 ->name('/vba_projects/upload-insert-images');
 
 Route::get('/basic_vba/splitting-string-into-array',
-'App\Http\Controllers\BasicVbaController@LoadSplittingStringIntoArray')
+[BasicVbaController::class,'LoadSplittingStringIntoArray'])
 ->name('/basic_vba/splitting-string-into-array');
 
 Route::get('/vba_projects/split-data-into-multiple-sheets',
-'App\Http\Controllers\VbaProjectsController@LoadVba_ProjectsSplitDataIntoMultipleSheets')
+[BasicVbaController::class,'LoadVba_ProjectsSplitDataIntoMultipleSheets'])
 ->name('/vba_projects/split-data-into-multiple-sheets');
 
 Route::get('/basic_vba/date-time-now-date-functions',
-'App\Http\Controllers\BasicVbaController@LoadDateTimeNowDateFunctions')
+[BasicVbaController::class,'LoadDateTimeNowDateFunctions'])
 ->name('/basic_vba/date-time-now-date-functions');
 
 Route::get('/basic_vba/format-date',
-'App\Http\Controllers\BasicVbaController@LoadFormatDate')
+[BasicVbaController::class,'LoadFormatDate'])
 ->name('/basic_vba/format-date');
 
 Route::get('/basic_vba/open-vb-editor-on-custom-button-click',
-'App\Http\Controllers\BasicVbaController@LoadOpenVbEditorOnCustomButtonClick')
+[BasicVbaController::class,'LoadOpenVbEditorOnCustomButtonClick'])
 ->name('/basic_vba/open-vb-editor-on-custom-button-click');
 
 Route::get('/basic_vba/assign-value-to-date-variables',
-'App\Http\Controllers\BasicVbaController@LoadAssignValueToDateVariables')
+[BasicVbaController::class,'LoadAssignValueToDateVariables'])
 ->name('/basic_vba/assign-value-to-date-variables');
 
 Route::get('/basic_vba/datepart-function',
-'App\Http\Controllers\BasicVbaController@LoadDatepartFunction')
+[BasicVbaController::class,'LoadDatepartFunction'])
 ->name('/basic_vba/datepart-function');
 
 Route::get('/basic_vba/dateadd-function',
-'App\Http\Controllers\BasicVbaController@LoadDateaddFunction')
+[BasicVbaController::class,'LoadDateaddFunction'])
 ->name('/basic_vba/dateadd-function');
 
 Route::get('/basic_vba/datediff-function',
-'App\Http\Controllers\BasicVbaController@LoadDatediffFunction')
+[BasicVbaController::class,'LoadDatediffFunction'])
 ->name('/basic_vba/datediff-function');
 
 Route::get('/basic_vba/get-max-number',
-'App\Http\Controllers\BasicVbaController@LoadGetMaxNumber')
+[BasicVbaController::class,'LoadGetMaxNumber'])
 ->name('/basic_vba/get-max-number');
 
 Route::get('/basic_vba/protect-vba-project-with-password',
-'App\Http\Controllers\BasicVbaController@LoadProtectVbaProjectWithPassword')
+[BasicVbaController::class,'LoadProtectVbaProjectWithPassword'])
 ->name('/basic_vba/protect-vba-project-with-password');
 
 Route::get('/basic_vba/weekday-weekdayname-date-functions',
-'App\Http\Controllers\BasicVbaController@LoadWeekdayWeekdaynameDateFunctions')
+[BasicVbaController::class,'LoadWeekdayWeekdaynameDateFunctions'])
 ->name('/basic_vba/weekday-weekdayname-date-functions');
 
 Route::get('/advanced_vba/send-outlook-mail',
