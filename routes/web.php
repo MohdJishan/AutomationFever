@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BasicVbaController;
+use App\Http\Controllers\AdvancedVbaController;
+use App\Http\Controllers\ExcelTipsAndTricksController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -97,7 +99,6 @@ Auth::routes();
 
 
 //Baisc VBA Routes
-
 Route::get('vba/basic-vba/why-should-learn-vba',
 [BasicVbaController::class,'LoadWhyShouldLearnVba'])
 ->name('vba/basic-vba/why-should-learn-vba');
@@ -483,43 +484,43 @@ Route::get('/basic_vba/weekday-weekdayname-date-functions',
 ->name('/basic_vba/weekday-weekdayname-date-functions');
 
 Route::get('/advanced_vba/send-outlook-mail',
-'/@LoadSendOutlookMail')
+[AdvancedVbaController::class,'LoadSendOutlookMail'])
 ->name('/advanced_vba/send-outlook-mail');
 
 Route::get('/advanced_vba/format-email-body-outlook-automation',
-'/@LoadFormatEmailBodyOutlookAutomation')
+[AdvancedVbaController::class,'LoadFormatEmailBodyOutlookAutomation'])
 ->name('/advanced_vba/format-email-body-outlook-automation');
 
 Route::get('/advanced_vba/add-signature-outlook-automation',
-'/@LoadAddSignatureOutlookAutomation')
+[AdvancedVbaController::class,'LoadAddSignatureOutlookAutomation'])
 ->name('/advanced_vba/add-signature-outlook-automation');
 
 Route::get('/advanced_vba/add-attachment-in-mail-outlook-automation',
-'/@LoadAddAttachmentInMailOutlookAutomation')
+[AdvancedVbaController::class,'LoadAddAttachmentInMailOutlookAutomation'])
 ->name('/advanced_vba/add-attachment-in-mail-outlook-automation');
 
 Route::get('/advanced_vba/insert-image-in-mail-outlook-automation',
-'/@LoadInsertImageInMailOutlookAutomation')
+[AdvancedVbaController::class,'LoadInsertImageInMailOutlookAutomation'])
 ->name('/advanced_vba/insert-image-in-mail-outlook-automation');
 
 Route::get('/advanced_vba/add-list-on-mail-outlook-automation',
-'/@LoadAddListOnMailOutlookAutomation')
+[AdvancedVbaController::class,'LoadAddListOnMailOutlookAutomation'])
 ->name('/advanced_vba/add-list-on-mail-outlook-automation');
 
 Route::get('/excel_tips_and_tricks/copy-from-clipboard-excel-tips-tricks',
-'App\Http\Controllers\ExcelTipsAndTricksController@LoadCopyFromClipboardExcelTipsTricks')
+[ExcelTipsAndTricksController::class,'LoadCopyFromClipboardExcelTipsTricks'])
 ->name('/excel_tips_and_tricks/copy-from-clipboard-excel-tips-tricks');
 
 Route::get('/excel_tips_and_tricks/add-bullet-point-excel-tips-tricks',
-'App\Http\Controllers\ExcelTipsAndTricksController@LoadAddBulletPointExcelTipsTricks')
+[ExcelTipsAndTricksController::class,'LoadAddBulletPointExcelTipsTricks'])
 ->name('/excel_tips_and_tricks/add-bullet-point-excel-tips-tricks');
 
 Route::get('/advanced_vba/add-unordered-list-on-mail-outlook-automation',
-'App\Http\Controllers/AdvancedVbaController@LoadAddUnorderedListOnMailOutlookAutomation')
+[ExcelTipsAndTricksController::class,'LoadAddUnorderedListOnMailOutlookAutomation'])
 ->name('/advanced_vba/add-unordered-list-on-mail-outlook-automation');
 
 Route::get('/advanced_vba/using-rtf-property-outlook-automation',
-'App\Http\Controllers/AdvancedVbaController@LoadUsingRtfPropertyOutlookAutomation')
+[ExcelTipsAndTricksController::class,'LoadUsingRtfPropertyOutlookAutomation'])
 ->name('/advanced_vba/using-rtf-property-outlook-automation');
 
 

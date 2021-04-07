@@ -8,6 +8,8 @@ body{
 	font-size:100%;
 	font-family: arial,sans-serif;
 	/* font-family: 'Times New Roman', sans-serif  !important; */
+	/* font-family: 'Roboto','Helvetica Neue',Helvetica,Arial,sans-serif; */
+
 }
 body a {
   transition: 0.5s all;
@@ -2829,8 +2831,15 @@ li.active{
 .hrr{
 	border: 1px solid #E96429;
 	margin-left: unset;
-	width:50%;}
-
+	width:50%;
+	margin-bottom: 1px;
+}
+.hrrr{
+	border: 1px solid #2d545e;
+	margin-left: unset;
+	width:60%;
+	margin-top: 1px;
+}
 .card{
 	padding:2px 0px;
 	border: none !important;
@@ -2845,11 +2854,11 @@ li.active{
 .header-button-collapse{
 color: #fff !important;
     font-size: large !important;
-	padding: 0px 80% 0px 0px !important;
+	padding: 0px 50% 0px 0px !important;
 	text-decoration:none !important;
 }
 .card-body{
-font-size: large !important;
+font-size: medium !important;
 
 }
 
@@ -2873,4 +2882,44 @@ border-radius: 20px 5px 20px 5px;
 }
 .dropdown-divider{
 	border-top: 1px dotted #e9ecef !important;
+}
+.q.bold {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+.bold {
+    font-weight: bold;
+}
+.pb-2, .py-2 {
+    padding-bottom: .5rem!important;
+}
+.card-text {
+    font-size: 18px;
+}
+.qa_card{
+	border:1px dotted #2d545e !important;
+	box-shadow: 1px 1px 1px 1px #C1C1C1 !important;
+	border-radius: 5px !important;
+}
+
+.my-widget .inline-list li {
+    display: inline-block;
+    padding: 0 20px;
+    border-left: 1px solid #2f2f2f;
+    min-width: 105px;
+}
+
+.test-btn {
+    float: right;
+}
+.my-widget .inline-list li:first-child {
+    padding-left: 0px;
+    border: none;
+}
+.btn-danger{
+background-color:#F46001 !important;
+}
+a{
+color: #2d545e !important;
+text-decoration: none !important;
 }
