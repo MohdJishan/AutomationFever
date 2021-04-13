@@ -160,6 +160,7 @@ class HomeController extends Controller
                                                 'video_id',
                                                 'video_title',
                                                 'page_url',
+                                                'duration',
                                               )
                                          ->where('course_name','basic-vba')  
                                          ->orderBy('course_sortBy')   
@@ -180,6 +181,7 @@ class HomeController extends Controller
                                                   'video_id',
                                                   'video_title',
                                                   'page_url',
+                                                  'duration',
                                                 )
                                            ->where('course_name','advanced-vba')     
                                            ->orderBy('course_sortBy')                                           
@@ -199,6 +201,7 @@ class HomeController extends Controller
                                                 'video_id',
                                                 'video_title',
                                                 'page_url',
+                                                'duration',
                                               )
                                          ->where('course_name','excel-tips-and-tricks')     
                                         ->get();                                    
